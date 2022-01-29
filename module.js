@@ -1,5 +1,5 @@
-import { join, resolve } from 'path';
-import { readFileSync, writeFileSync } from 'fs';
+import { join, resolve, basename } from 'path';
+import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { template } from 'lodash';
 import glob from 'fast-glob';
 import generateTheme from './helpers/GenerateTheme';
@@ -50,6 +50,7 @@ function createTheme (colors, nuxt) {
   const source = template(templateSource, {})(theme);
   const path = resolve(nuxt.options.rootDir, 'node_modules', '.cache', 'theme.css');
 
+  mkdirSync(resolve(nuxt.options.rootDir, 'node_modules', '.cache'), { recursive: true });
   writeFileSync(path, source);
 
   const { scss } = nuxt.options.build.loaders;
