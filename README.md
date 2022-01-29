@@ -61,11 +61,7 @@ componentLibrary: {
 // or inside buildModules
 
 buildModules: [
-  ['@altura/components', // make sure this d-components runs before @nuxtjs/style-resources
-    importStyles: true,
-    copyFonts: true,
-    storybook: true
-  ],
+  '@divs-and-devs/components',
   '@nuxtjs/style-resources'
 ],
 ```
@@ -74,10 +70,6 @@ buildModules: [
 
 This module uses storybook, a component inspector/documentation. Run it using `npm run storybook`.
 
-## Documentation
-
-You can find the documentation on https://frontend-components.altura.io.
-
 ## Development
 
-New versions are automatically rolled out using pipelines. You can find the latest package on [Azure Feeds](https://dev.azure.com/re-software/KL0271%20-%20Altura/_packaging?_a=package&feed=d-components&package=%40altura/components&protocolType=Npm&version=1.2.12475)
+New versions are automatically rolled out using pipelines.
