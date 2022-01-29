@@ -1,0 +1,143 @@
+
+.slide-horizontal-reverse-enter-active,
+.slide-horizontal-leave-active {
+  transition: transform 250ms ease-in;
+}
+
+.slide-horizontal-reverse-move,
+.slide-horizontal-move {
+  transition: all 250ms ease-in-out;
+}
+
+.slide-horizontal-reverse-leave-active,
+.slide-horizontal-enter-active {
+  transition: transform 250ms ease-out;
+}
+
+.slide-horizontal-reverse-enter,
+.slide-horizontal-reverse-leave-to,
+.slide-horizontal-enter-to,
+.slide-horizontal-leave
+{
+  transform: translateX(0);
+}
+
+.slide-horizontal-reverse-leave-to,
+.slide-horizontal-enter {
+  transform: translateX(-100%);
+}
+
+.slide-horizontal-reverse-enter,
+.slide-horizontal-leave-to {
+  transform: translateX(100%);
+}
+
+.fade-enter-active,
+.fade-leave-active,
+.v-enter-active,
+.v-leave-active{
+  transition: opacity 250ms linear;
+}
+
+.fade-enter,
+.fade-leave-to,
+.v-enter,
+.v-leave-to {
+  opacity: 0;
+}
+
+.fade-move,
+.v-move
+{
+  transition: all 250ms ease;
+}
+
+
+.slide-right-leave-active {
+  transition: margin-right 250ms ease-in, margin-left 250ms ease-in;
+}
+
+.slide-right-enter-active {
+  transition: margin-right 250ms ease-out, margin-left 250ms ease-out;
+}
+
+.slide-right-enter-to,
+.slide-right-leave {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.slide-right-enter,
+.slide-right-leave-to {
+  margin-right: -100%;
+  margin-left: 100%;
+}
+
+.slide-left-leave-active {
+  transition: margin-right 250ms ease-in, margin-left 250ms ease-in;
+}
+
+.slide-left-enter-active {
+  transition: margin-right 250ms ease-out, margin-left 250ms ease-out;
+}
+
+.slide-left-enter-to,
+.slide-left-leave {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.slide-left-enter,
+.slide-left-leave-to {
+  margin-right: 100%;
+  margin-left: -100%;
+}
+
+.fade-up-leave-to,
+.fade-up-enter {
+  transform: translateY(var(--height, -5rem));
+  opacity: 0;
+}
+
+.fade-down-leave-active,
+.fade-down-enter-active,
+.fade-up-leave-active,
+.fade-up-enter-active {
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+
+.fade-down-leave-to,
+.fade-down-enter {
+  transform: translateY(var(--height, 5rem));
+  opacity: 0;
+}
+
+.fade-left-enter {
+  transform: translateX(-5rem);
+  opacity: 0;
+}
+
+.fade-left-leave-to {
+  transform: translateX(-5rem);
+  opacity: 0;
+}
+
+.fade-left-leave-active,
+.fade-left-enter-active {
+  transition: opacity 0.2s ease-in, transform 0.1s ease-in;
+}
+
+.fade-right-enter {
+  transform: translateX(5rem);
+  opacity: 0;
+}
+
+.fade-right-leave-to {
+  transform: translateX(5rem);
+  opacity: 0;
+}
+
+.fade-right-leave-active,
+.fade-right-enter-active {
+  transition: opacity 0.2s ease-in, transform 0.1s ease-in;
+}

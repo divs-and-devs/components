@@ -1,0 +1,10 @@
+{
+      "v-tooltip": {
+        "description": "Shows a tooltip on this element",
+        "type": "string"
+      },
+      "v-keybind": {
+        "description": "Allows this element to be activated using a keybind",
+        "type": "boolean"
+      }
+    }

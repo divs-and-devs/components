@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "types": [
+            "./module.d.ts",
+            "@nuxtjs/axios"
+        ]
+    }
+}

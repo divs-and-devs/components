@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "@nuxtjs"
+  ],
+  "rules": {
+    "indent": [
+      "error",
+      2
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "curly": [
+      "error",
+      "multi"
+    ],
+    "vue/multi-word-component-names": [
+      "off"
+    ]
+  }
+}

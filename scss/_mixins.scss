@@ -1,0 +1,157 @@
+@mixin mobile {
+  @media only screen and (max-width: 800px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: 800px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin notebook {
+  @media only screen and (max-width: 1440px) {
+    @content;
+  }
+}
+
+@mixin flex($halign: center, $valign: center) {
+  display: flex;
+  align-items: $valign;
+  justify-content: $halign;
+}
+
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+@mixin colors($property: background-color) {
+  @each $color, $variable in $list {
+    &.#{$color} {
+      #{$property}: $variable;
+    }
+  }
+}
+
+@mixin fade-colors($property: background-color) {
+  @each $color, $variable in $list {
+    &.#{$color} {
+      @if (str-index($color, "-shade")) {
+        #{$property}: str-replace($variable, '-shade', '');
+      }
+
+      @else if (str-index($color, "-fade")) {
+        #{$property}: $shade-100;
+      }
+
+      @else if ($color == "shade-800") {
+        #{$property}: $shade-700;
+      }
+
+      @else if ($color == "shade-700") {
+        #{$property}: $shade-600;
+      }
+
+      @else if ($color == "shade-600") {
+        #{$property}: $shade-500;
+      }
+
+      @else if ($color == "shade-500") {
+        #{$property}: $shade-400;
+      }
+
+      @else if ($color == "shade-400") {
+        #{$property}: $shade-300;
+      }
+
+      @else if ($color == "shade-300") {
+        #{$property}: $shade-200;
+      }
+
+      @else if ($color == "shade-200") {
+        #{$property}: $shade-100;
+      }
+
+      @else if ($color == "shade-100") {
+        #{$property}: $background;
+      } @else {
+        #{$property}: var(--#{$color}-fade, var(--text-color));
+      }
+    }
+  }
+}
+
+@mixin shade-colors($property: background-color) {
+  @each $color, $variable in $list {
+    &.#{$color} {
+      @if (str-index($color, "-shade")) {
+        #{$property}: #{$background};
+      }
+
+      @else if (str-index($color, "-fade")) {
+        #{$property}: str-replace($variable, '-fade', '');
+      }
+
+      @else if ($color == "shade-700") {
+        #{$property}: $shade-800;
+      }
+
+      @else if ($color == "shade-600") {
+        #{$property}: $shade-700;
+      }
+
+      @else if ($color == "shade-500") {
+        #{$property}: $shade-600;
+      }
+
+      @else if ($color == "shade-400") {
+        #{$property}: $shade-500;
+      }
+
+      @else if ($color == "shade-300") {
+        #{$property}: $shade-400;
+      }
+
+      @else if ($color == "shade-200") {
+        #{$property}: $shade-300;
+      }
+
+      @else if ($color == "shade-100") {
+        #{$property}: $shade-200;
+      } @else {
+        #{$property}: var(--#{$color}-shade, var(--background));
+      }
+    }
+  }
+}
+
+@mixin text-color($property: color) {
+  @each $color, $variable in $list {
+    &.#{$color} {
+      @if ($color == "shade-400" or $color == "shade-500" or $color == "shade-600" or $color == "shade-700" or $color == "shade-800") {
+        #{$property}: var(--#{$color}-text, var(--background));
+      }
+
+      @else if(str-index($color, '-text')) {
+        #{$property}: var(--#{str-replace($color, '-text', '')}, var(--text-color));
+      }
+
+      @else {
+        #{$property}: var(--#{$color}-text, var(--text-color));
+      }
+    }
+  }
+}

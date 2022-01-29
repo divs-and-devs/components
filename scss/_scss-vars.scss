@@ -1,0 +1,88 @@
+$body-font: var(--body-font);
+$header-font: var(--header-font);
+
+$primary: var(--primary);
+$primary-text: var(--primary-text);
+$primary-fade: var(--primary-fade);
+$primary-fade-text: var(--primary-fade-text);
+$primary-shade: var(--primary-shade);
+$primary-shade-text: var(--primary-shade-text);
+
+$secondary: var(--secondary);
+$secondary-text: var(--primary-text);
+$secondary-fade: var(--secondary-fade);
+$secondary-fade-text: var(--secondary-fade-text);
+$secondary-shade: var(--secondary-shade);
+$secondary-shade-text: var(--secondary-shade-text);
+
+$error: var(--error);
+$error-fade: var(--error-fade);
+$error-fade-text: var(--error-fade-text);
+$error-text: var(--error-text);
+$error-shade: var(--error-shade);
+$error-shade-text: var(--error-shade-text);
+
+$warning: var(--warning);
+$warning-fade: var(--warning-fade);
+$warning-fade-text: var(--warning-fade-text);
+$warning-text: var(--warning-text);
+$warning-shade: var(--warning-shade);
+$warning-shade-text: var(--warning-shade-text);
+
+$shadow: 0px 67px 205px rgba(64, 64, 64, 0.08),
+  0px 20px 61px rgba(64, 64,64, 0.05), 0px 8px 25px rgba(64, 64, 64, 0.04),
+  0px 3px 10px rgba(64, 64, 64, 0.02);
+$shadow-small:0px 8px 8px rgba(64, 64, 64, 0.06);
+
+$dark: var(--dark);
+$dark-fade: var(--dark-fade);
+$dark-shade: var(--dark-shade);
+
+$shade-800: var(--shade-800);
+$shade-700: var(--shade-700);
+$shade-600: var(--shade-600);
+$shade-500: var(--shade-500);
+$shade-400: var(--shade-400);
+$shade-300: var(--shade-300);
+$shade-200: var(--shade-200);
+$shade-100: var(--shade-100);
+
+$light: var(--light);
+$light-fade: var(--light-fade);
+$light-shade: var(--light-shade);
+
+$background: var(--background);
+$text-color: var(--text-color);
+
+$list: (
+  primary: $primary,
+  primary-text: $primary-text,
+  primary-fade: $primary-fade,
+  primary-shade: $primary-shade,
+  secondary: $secondary,
+  secondary-text: $secondary-text,
+  secondary-fade: $secondary-fade,
+  secondary-shade: $secondary-shade,
+  error: $error,
+  error-text: $error-text,
+  error-fade: $error-fade,
+  error-shade: $error-shade,
+  warning: $warning,
+  warning-text: $warning-text,
+  warning-fade: $warning-fade,
+  warning-shade: $warning-shade,
+  dark: $dark,
+  dark-fade: $dark-fade,
+  dark-shade: $dark-shade,
+  light: $light,
+  light-fade: $light-fade,
+  light-shade: $light-shade,
+  shade-800: $shade-800,
+  shade-700: $shade-700,
+  shade-600: $shade-600,
+  shade-500: $shade-500,
+  shade-400: $shade-400,
+  shade-300: $shade-300,
+  shade-200: $shade-200,
+  shade-100: $shade-100,
+);

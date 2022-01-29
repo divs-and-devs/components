@@ -1,0 +1,144 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: <%=dark.primary.base %>;
+    --primary-text: <%=dark.primary.text %>;
+    --primary-fade: <%=dark.primary.fade %>;
+    --primary-fade-text: <%=dark.primary.fadetext %>;
+    --primary-shade: <%=dark.primary.shade %>;
+    --primary-shade-text: <%=dark.primary.shadetext %>;
+    --secondary: <%=dark.secondary.base %>;
+    --secondary-text: <%=dark.secondary.text %>;
+    --secondary-fade: <%=dark.secondary.fade %>;
+    --secondary-fade-text: <%=dark.secondary.fadetext %>;
+    --secondary-shade: <%=dark.secondary.shade %>;
+    --secondary-shade-text: <%=dark.secondary.shadetext %>;
+    --error: <%=dark.error.base %>;
+    --error-text: <%=dark.error.text %>;
+    --error-fade: <%=dark.error.fade %>;
+    --error-fade-text: <%=dark.error.fadetext %>;
+    --error-shade: <%=dark.error.shade %>;
+    --error-shade-text: <%=dark.error.shadetext %>;
+    --warning: <%=dark.warning.base %>;
+    --warning-text: <%=dark.warning.text %>;
+    --warning-fade: <%=dark.warning.fade %>;
+    --warning-fade-text: <%=dark.warning.fadetext %>;
+    --warning-shade: <%=dark.warning.shade %>;
+    --warning-shade-text: <%=dark.warning.shadetext %>;
+    --light: #fff;
+    --light-fade: #fafafa;
+    --light-shade: #efefef;
+    --shade-100: <%=shade["800"] %>;
+    --shade-200: <%=shade["700"] %>;
+    --shade-300: <%=shade["600"] %>;
+    --shade-400: <%=shade["500"] %>;
+    --shade-500: <%=shade["400"] %>;
+    --shade-600: <%=shade["300"] %>;
+    --shade-700: <%=shade["200"] %>;
+    --shade-800: <%=shade["100"] %>;
+    --dark: #161616;
+    --dark-fade: #808080;
+    --dark-shade: #000;
+    --background: var(--dark);
+    --text-color: var(--light);
+
+    color: var(--text-color);
+    background-color: var(--background);
+    color-scheme: dark;
+  }
+}
+
+:root,
+body.light {
+  --primary: <%=light.primary.base %>;
+  --primary-text: <%=light.primary.text %>;
+  --primary-fade: <%=light.primary.fade %>;
+  --primary-fade-text: <%=light.primary.fadetext %>;
+  --primary-shade: <%=light.primary.shade %>;
+  --primary-shade-text: <%=light.primary.shadetext %>;
+  --secondary: <%=light.secondary.base %>;
+  --secondary-text: <%=light.secondary.text %>;
+  --secondary-fade: <%=light.secondary.fade %>;
+  --secondary-fade-text: <%=light.secondary.fadetext %>;
+  --secondary-shade: <%=light.secondary.shade %>;
+  --secondary-shade-text: <%=light.secondary.shadetext %>;
+  --error: <%=light.error.base %>;
+  --error-text: <%=light.error.text %>;
+  --error-fade: <%=light.error.fade %>;
+  --error-fade-text: <%=light.error.fadetext %>;
+  --error-shade: <%=light.error.shade %>;
+  --error-shade-text: <%=light.error.shadetext %>;
+  --warning: <%=light.warning.base %>;
+  --warning-text: <%=light.warning.text %>;
+  --warning-fade: <%=light.warning.fade %>;
+  --warning-fade-text: <%=light.warning.fadetext %>;
+  --warning-shade: <%=light.warning.shade %>;
+  --warning-shade-text: <%=light.warning.shadetext %>;
+  --light: #fff;
+  --light-fade: #fafafa;
+  --light-shade: #efefef;
+  --shade-100: <%=shade["100"] %>;
+  --shade-200: <%=shade["200"] %>;
+  --shade-300: <%=shade["300"] %>;
+  --shade-400: <%=shade["400"] %>;
+  --shade-500: <%=shade["500"] %>;
+  --shade-600: <%=shade["600"] %>;
+  --shade-700: <%=shade["700"] %>;
+  --shade-800: <%=shade["800"] %>;
+  --dark: #161616;
+  --dark-fade: #808080;
+  --dark-shade: #000;
+  --background: var(--light);
+  --text-color: var(--dark);
+  --navbar-height: <%=navbarheight%>;
+
+  color: var(--text-color);
+  background-color: var(--background);
+  color-scheme: light;
+}
+
+body.dark {
+  --primary: <%=dark.primary.base %>;
+  --primary-text: <%=dark.primary.text %>;
+  --primary-fade: <%=dark.primary.fade %>;
+  --primary-fade-text: <%=dark.primary.fadetext %>;
+  --primary-shade: <%=dark.primary.shade %>;
+  --primary-shade-text: <%=dark.primary.shadetext %>;
+  --secondary: <%=dark.secondary.base %>;
+  --secondary-text: <%=dark.secondary.text %>;
+  --secondary-fade: <%=dark.secondary.fade %>;
+  --secondary-fade-text: <%=dark.secondary.fadetext %>;
+  --secondary-shade: <%=dark.secondary.shade %>;
+  --secondary-shade-text: <%=dark.secondary.shadetext %>;
+  --error: <%=dark.error.base %>;
+  --error-text: <%=dark.error.text %>;
+  --error-fade: <%=dark.error.fade %>;
+  --error-fade-text: <%=dark.error.fadetext %>;
+  --error-shade: <%=dark.error.shade %>;
+  --error-shade-text: <%=dark.error.shadetext %>;
+  --warning: <%=dark.warning.base %>;
+  --warning-text: <%=dark.warning.text %>;
+  --warning-fade: <%=dark.warning.fade %>;
+  --warning-fade-text: <%=dark.warning.fadetext %>;
+  --warning-shade: <%=dark.warning.shade %>;
+  --warning-shade-text: <%=dark.warning.shadetext %>;
+  --light: #fff;
+  --light-fade: #fafafa;
+  --light-shade: #efefef;
+  --shade-100: <%=shade["800"] %>;
+  --shade-200: <%=shade["700"] %>;
+  --shade-300: <%=shade["600"] %>;
+  --shade-400: <%=shade["500"] %>;
+  --shade-500: <%=shade["400"] %>;
+  --shade-600: <%=shade["300"] %>;
+  --shade-700: <%=shade["200"] %>;
+  --shade-800: <%=shade["100"] %>;
+  --dark: #161616;
+  --dark-fade: #808080;
+  --dark-shade: #000;
+  --background: var(--dark);
+  --text-color: var(--light);
+
+  color: var(--text-color);
+  background-color: var(--background);
+  color-scheme: dark;
+}
