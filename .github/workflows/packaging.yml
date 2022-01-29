@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout 🛎
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
 
       - name: Setup node env 🏗
         uses: actions/setup-node@v2.1.5
@@ -45,6 +45,8 @@ jobs:
 
       - name: Creating artifact
         uses: actions/upload-artifact@v2.2.2
+        with:
+          path: .
 
       - name: Publishing package
         working-directory: dist
