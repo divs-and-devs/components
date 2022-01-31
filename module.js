@@ -1,4 +1,4 @@
-import { join, resolve, basename } from 'path';
+import { join, resolve } from 'path';
 import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { template } from 'lodash';
 import glob from 'fast-glob';

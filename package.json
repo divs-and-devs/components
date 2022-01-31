@@ -1,6 +1,6 @@
 {
   "name": "@divs-and-devs/components",
-  "version": "1.0.7",
+  "version": "1.0.0",
   "main": "module.js",
   "types": "module.d.ts",
   "description": "Component library",
@@ -8,6 +8,9 @@
     "Component",
     "library"
   ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "author": "Divs and Devs",
   "license": "ISC",
   "files": [
