@@ -2,5 +2,7 @@ import { addons } from '@storybook/addons';
 import { themes } from "@storybook/theming";
 addons.setConfig({
   theme: themes.dark,
-  panelPosition: "right"
+  panelPosition: "right",
+  showPanel: true,
+  isToolshown: true
 });
