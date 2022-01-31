@@ -1,3 +1,5 @@
+![GitHub package.json version](https://img.shields.io/github/package-json/v/divs-and-devs/components?color=%2318a5e2&label=%40divs-and-devs%2Fcomponents&style=flat-square)
+
 # Divs and devs components
 
 This library contains all global Divs and Devs components.
@@ -68,7 +70,7 @@ buildModules: [
 
 ## Storybook
 
-This module uses storybook, a component inspector/documentation. Run it using `npm run storybook`.
+This module uses storybook, a component documentation format. Run it using `npm run storybook`. Or use the latest live version [here](https://components.divsanddevs.nl).
 
 ## Development
 

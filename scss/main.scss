@@ -146,8 +146,10 @@ a {
     text-decoration: underline;
   }
 
+
+  &:hover,
   &:active {
-    color: $dark;
+    color: $primary-shade;
   }
 }
 
