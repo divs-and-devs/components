@@ -23,17 +23,15 @@ export default {
   height: 1em;
   transform: translateZ(0);
   border-left: 0.1em solid currentColor;
-  border-top: 0.1em solid var(--color);
-  border-right: 0.1em solid var(--color);
-  border-bottom: 0.1em solid var(--color);
-  animation: spinner 1.1s infinite linear;
+  border-top: 0.1em solid $shade-300;
+  border-right: 0.1em solid $shade-300;
+  border-bottom: 0.1em solid $shade-300;
+  animation: spinner 1s infinite linear;
 
   @include colors(color);
 
-  @include fade-colors(--color);
-
-  body.dark & {
-    @include shade-colors(--color);
+  &.shade-300 {
+    color: $shade-500;
   }
 }
 

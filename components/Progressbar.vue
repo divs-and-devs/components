@@ -120,14 +120,13 @@ export default {
   }
 
   .bar {
-    background-color: $shade-100;
+    background-color: $shade-300;
     height: 0.25rem;
     border-radius: 1rem;
     overflow: hidden;
     box-sizing: border-box;
 
     @include colors(--color);
-    @include fade-colors;
 
     .value {
       background-color: var(--color);

@@ -41,7 +41,7 @@ export default {
     },
 
     index () {
-      return this.$parent.tabs.indexOf(this.$vnode);
+      return this.$parent.tabs.findIndex(x => this.name === x.name);
     }
   },
 

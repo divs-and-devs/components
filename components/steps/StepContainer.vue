@@ -26,7 +26,7 @@ export default {
 
   computed: {
     steps () {
-      return this.$slots.default.filter(x => !!x.tag).map(x => x.componentInstance);
+      return this.$children;
     }
   },
 

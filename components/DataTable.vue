@@ -372,6 +372,7 @@ export default {
         background-color: unset;
         border-bottom: 1px solid $shade-300;
         padding: 0.5rem 1.5rem;
+        height: 2rem;
         cursor: default;
 
         span {

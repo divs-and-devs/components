@@ -1,5 +1,5 @@
 
-.slide-horizontal-reverse-enter-active,
+.slide-horizontal-reverse-leave-active,
 .slide-horizontal-leave-active {
   transition: transform 250ms ease-in;
 }
@@ -9,7 +9,7 @@
   transition: all 250ms ease-in-out;
 }
 
-.slide-horizontal-reverse-leave-active,
+.slide-horizontal-reverse-enter-active,
 .slide-horizontal-enter-active {
   transition: transform 250ms ease-out;
 }

@@ -72,7 +72,7 @@ export default {
 
     &:not(:last-of-type)::after {
       content: '';
-      width: calc(50% + 3.5rem);
+      width: calc(100% - 4.5rem);
       height: 2px;
       position: absolute;
       left: calc(50% + 2.25rem);

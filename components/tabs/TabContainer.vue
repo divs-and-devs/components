@@ -6,8 +6,7 @@
           'tab-container': true,
           'is-container': isContainer,
           'no-content': noContent,
-        },
-        type,
+        }
       ]"
     >
       <button
@@ -75,7 +74,7 @@ export default {
 
     transition: {
       type: String,
-      default: 'fade'
+      default: 'slide-horizontal'
     },
 
     transitionDuration: {
@@ -94,7 +93,8 @@ export default {
     return {
       selectedIndex: 0,
       internalTransition: this.transition,
-      uniqueID: encodeURIComponent(Math.random()).substring(2)
+      uniqueID: encodeURIComponent(Math.random()).substring(2),
+      tabs: []
     };
   },
 
@@ -104,18 +104,20 @@ export default {
         return this.tabs[this.selectedIndex].classes;
 
       return [];
-    },
-
-    tabs () {
-      return this.$slots.default.filter(x => x && (x?.tag?.includes('Tab') ?? false)).map(x => ({ ...x.componentOptions.propsData, ...x.componentInstance?.$props })).filter(x => !!x);
     }
   },
 
   mounted () {
     this.select(this.selectedIndex);
+    this.$watch('$children', () => this.updateTabs());
+    this.updateTabs();
   },
 
   methods: {
+    updateTabs () {
+      this.tabs = this.$children.filter(x => x.$vnode.tag.toLowerCase().includes('tab'));
+    },
+
     select (id) {
       if (this.transition === 'slide-horizontal' || this.transition === 'slide-horizontal-reverse')
         this.internalTransition = (this.selectedIndex - id < 0) ? 'slide-horizontal-reverse' : 'slide-horizontal';

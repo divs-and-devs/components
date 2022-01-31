@@ -43,6 +43,18 @@ export default {
       grid-template-columns: 1fr 35vw;
     }
 
+    @include tablet {
+      &.open {
+        grid-template-columns: 1fr 50vw;
+      }
+    }
+
+    @include mobile {
+      &.open {
+        grid-template-columns: 0 1fr;
+      }
+    }
+
     &.overlay {
       grid-template-columns: 1fr;
       position: relative;
@@ -62,6 +74,10 @@ export default {
         width: 35vw;
         box-shadow: $shadow;
         transition: right 250ms ease-out;
+
+        @include mobile {
+          width: 100vw;
+        }
       }
 
       &.open > .panel {

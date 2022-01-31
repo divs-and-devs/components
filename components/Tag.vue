@@ -43,7 +43,7 @@ export default {
   justify-content: center;
   align-items: center;
   font-family: $body-font, sans-serif;
-  border-radius: $border-radius;
+  border-radius: $border-radius * 9999;
   user-select: none;
   vertical-align: middle;
   margin: 0.25rem;

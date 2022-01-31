@@ -9,6 +9,9 @@ export default {
       control: 'select',
       options: colors
     }
+  },
+  args: {
+    step: 0
   }
 };
 

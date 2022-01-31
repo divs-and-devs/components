@@ -92,7 +92,7 @@ export default {
       color: inherit;
     }
 
-    > button {
+    > button.tertiary {
       color: inherit;
       float: right;
       margin: 0 !important;

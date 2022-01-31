@@ -33,6 +33,7 @@ export const TabContainer = (_, { argTypes }) => ({
         &lt;/d-tab&gt;
         </pre>
         </code>
+        </p>
       </d-tab>
       <d-tab name="tab 2">
         <h1>Tab 2</h1>
