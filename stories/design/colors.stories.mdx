@@ -1,0 +1,25 @@
+import { Meta } from '@storybook/addon-docs';
+import { ColorPalette, ColorItem } from "@storybook/components"
+
+<Meta title="Design/Colors" />
+
+# Colors
+
+<ColorPalette>
+  <ColorItem title="Primary" colors={{ base: 'var(--primary)', fade: 'var(--primary-fade)', shade: 'var(--primary-shade)' }} />
+  <ColorItem title="Secondary" colors={{ base: 'var(--secondary)', fade: 'var(--secondary-fade)', shade: 'var(--secondary-shade)' }} />
+  <ColorItem title="Error" colors={{ base: 'var(--error)', fade: 'var(--error-fade)', shade: 'var(--error-shade)' }} />
+  <ColorItem title="Warning" colors={{ base: 'var(--warning)', fade: 'var(--warning-fade)', shade: 'var(--warning-shade)' }} />
+  <ColorItem title="shades" colors={{
+    "shade-100": 'var(--shade-100)',
+    "shade-200": 'var(--shade-200)',
+    "shade-300": 'var(--shade-300)',
+    "shade-400": 'var(--shade-400)'
+    }} />
+  <ColorItem title="shades" colors={{
+    "shade-500": 'var(--shade-500)',
+    "shade-600": 'var(--shade-600)',
+    "shade-700": 'var(--shade-700)',
+    "shade-800": 'var(--shade-800)'
+    }} />
+</ColorPalette>

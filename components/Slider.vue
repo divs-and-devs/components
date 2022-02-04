@@ -234,7 +234,7 @@ export default {
 }
 
 .bar {
-  @include fade-colors;
+  background-color: $shade-300;
   @include colors(color);
 
   position: relative;

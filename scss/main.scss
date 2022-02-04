@@ -86,6 +86,10 @@ td {
   font-style: normal;
 }
 
+p + p {
+  margin-top: 1em;
+}
+
 sub {
   font-size: 1em;
   font-weight: 600;
@@ -163,12 +167,22 @@ kbd {
   justify-content: center;
   align-items: center;
   min-width: 1em;
-  background-color: $shade-600;
-  border: 1px solid $shade-700;
-  color: $shade-100;
+  background-color: $shade-200;
+  color: $text-color;
   padding: 3px;
   border-radius: 5px;
-  box-sizing: border-box;
+  position: relative;
+
+  &::after {
+    content: " ";
+    position: absolute;
+    top: 2px;
+    height: 100%;
+    width: 100%;
+    background-color: $shade-400;
+    border-radius: inherit;
+    z-index: -1;
+  }
 }
 
 pre {

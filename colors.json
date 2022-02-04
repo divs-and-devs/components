@@ -22,5 +22,13 @@
   "shade-500",
   "shade-600",
   "shade-700",
-  "shade-800"
+  "shade-800",
+  "dark",
+  "dark-shade",
+  "dark-fade",
+  "light",
+  "light-shade",
+  "light-fade",
+  "background",
+  "text-color"
 ]

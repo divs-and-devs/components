@@ -42,6 +42,7 @@ export default {
   }
 
   @include colors;
+  @include colors(--background);
   @include text-color;
 }
 </style>

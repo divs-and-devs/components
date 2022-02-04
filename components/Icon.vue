@@ -19,7 +19,7 @@ export default {
     },
     color: {
       type: String,
-      default: 'text-color'
+      default: undefined
     },
     filled: {
       type: Boolean,

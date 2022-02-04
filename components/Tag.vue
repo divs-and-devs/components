@@ -30,7 +30,7 @@ export default {
 
     color: {
       type: String,
-      default: 'primary-fade',
+      default: 'primary',
       required: false
     }
   }
