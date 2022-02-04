@@ -1,6 +1,7 @@
 <template>
   <div class="tabs">
     <div
+      name="fade"
       :class="[
         {
           'tab-container': true,
@@ -10,12 +11,12 @@
       ]"
     >
       <button
-        v-for="(tab, index) in tabs.filter((x) => !x.hidden)"
-        :key="index"
-        :class="{ selected: index == selectedIndex }"
+        v-for="(tab) in tabs.filter((x) => !x.hidden)"
+        :key="tab.index"
+        :class="{ selected: tab.index == selectedIndex }"
         tabindex="0"
-        @keydown.space="select(index)"
-        @click="select(index)"
+        @keydown.space="select(tab.index)"
+        @click="select(tab.index)"
       >
         {{ tab.name }}
         <span v-if="tab.count != undefined" class="count">{{ tab.count }}</span>
@@ -24,8 +25,8 @@
       <div class="actions">
         <slot name="actions" />
       </div>
-      <slot />
     </div>
+    <slot />
     <div v-if="!noContent" class="content" :class="[background, { screen }]">
       <transition :name="internalTransition" mode="out-in">
         <portal-target
@@ -77,11 +78,6 @@ export default {
       default: 'slide-horizontal'
     },
 
-    transitionDuration: {
-      type: Number,
-      default: 0
-    },
-
     selected: {
       type: String,
       required: false,
@@ -111,9 +107,15 @@ export default {
     this.select(this.selectedIndex);
     this.$watch('$children', () => this.updateTabs());
     this.updateTabs();
+    this.updateHidden(this.selectedIndex, this.tabs[0].hidden);
   },
 
   methods: {
+    updateHidden (index, value) {
+      if (value && this.selectedIndex === index)
+        this.select(this.tabs.findIndex(x => !x.hidden));
+    },
+
     updateTabs () {
       this.tabs = this.$children.filter(x => x.$vnode.tag.toLowerCase().includes('tab'));
     },
@@ -124,8 +126,12 @@ export default {
 
       this.selectedIndex = id;
 
-      for (let i = 0; i < this.tabs.length; i++)
+      for (let i = 0; i < this.tabs.length; i++) {
         this.tabs[i].show = this.selectedIndex === i;
+
+        if (this.selectedIndex === i)
+          this.$emit('update:selected', this.tabs[i].name);
+      }
     }
   }
 };

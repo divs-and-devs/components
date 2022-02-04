@@ -48,8 +48,13 @@ export default {
   watch: {
     show (value) {
       this.$emit('update:selected', value);
+
       if (value) this.$emit('show');
       else this.$emit('hide');
+    },
+
+    hidden () {
+      this.$parent.updateHidden(this.index, this.hidden);
     }
   },
 

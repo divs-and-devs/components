@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import Vue from 'vue';
 export default {
   provide () {
     return {
@@ -36,20 +37,12 @@ export default {
     }
   },
 
-  mounted () {
+  async mounted () {
+    await this.$nextTick();
     this.updateSteps();
-
-    for (let i = 0; i < this.steps.length; i++)
-      this.steps[i].number = i;
   },
 
   methods: {
-    registerStep (callback) {
-      this.steps.push(callback);
-
-      return this.steps.length - 1;
-    },
-
     changeStep (index) {
       this.$emit('update:step', index);
     },
@@ -57,12 +50,13 @@ export default {
     updateSteps () {
       for (let i = 0; i < this.steps.length; i++) {
         let state = 'none';
+        Vue.set(this.steps[i], 'number', i);
 
         if (i < this.step) state = 'done';
         if (i === this.step)
           state = 'current';
 
-        this.steps[i].state = state;
+        Vue.set(this.steps[i], 'state', state);
       }
     }
   }
