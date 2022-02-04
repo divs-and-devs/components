@@ -1,5 +1,4 @@
 import ContextMenuComponent from '@/components/menu/ContextMenu.vue';
-
 export default {
   title: 'Controls/Menu/Context Menu',
   component: ContextMenuComponent,

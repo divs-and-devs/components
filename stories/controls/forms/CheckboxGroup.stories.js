@@ -1,8 +1,10 @@
 import CheckboxGroupComponent from '@/components/CheckboxGroup.vue';
+import CheckboxComponent from '@/components/Checkbox.vue';
 
 export default {
   title: 'Controls/Forms/Checkbox Group',
   component: CheckboxGroupComponent,
+  subcomponents: { Checkbox: CheckboxComponent },
   args: {
     options: {
       option1: 'Label for option 1',

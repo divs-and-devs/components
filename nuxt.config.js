@@ -58,7 +58,8 @@ export default {
 
   storybook: {
     stories: [
-      '~/stories/**/Welcome.stories.js',
+      '~/stories/Welcome.stories.mdx',
+      '~/stories/design/colors.stories.mdx',
       '~/stories/**/*.stories.js'
     ],
 
@@ -71,7 +72,7 @@ export default {
         }
       },
       darkMode: {
-        current: 'dark',
+        current: 'light',
         stylePreview: true,
 
         dark: { ...themes.dark, brandImage: '/logo_text.png', brandUrl: 'https://divsanddevs.nl' },
