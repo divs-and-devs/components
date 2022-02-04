@@ -21,7 +21,7 @@
       :aria-checked="value == option"
       :aria-label="data.label || data.icon"
       @click="$emit('input', option)"
-      @mouseenter="emitIfPressed($event, option)"
+      @pointerenter="emitIfPressed($event, option)"
     >
       <d-icon
         v-if="typeof data == 'object'"
