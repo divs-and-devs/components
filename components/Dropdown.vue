@@ -17,13 +17,22 @@
         <d-icon name="chevron-down" :class="{ open: isOpen }" />
       </button>
     </slot>
-    <div v-if="isOpen" class="backdrop" @click="isOpen = false" />
-    <transition name="fade">
+
+    <transition>
+      <div
+        v-if="isOpen"
+        v-keybind.esc
+        class="backdrop"
+        :class="{ sheet }"
+        @click="close($event)"
+      />
+    </transition>
+    <transition>
       <form
         v-if="isOpen"
-        v-bind="$attrs"
         ref="dropdown"
         class="dropdown"
+        :class="{ sheet }"
         :style="location"
         @submit.prevent="submit"
       >
@@ -45,7 +54,7 @@ import {
   size,
   arrow
 } from '@floating-ui/dom';
-import debounce from '../helpers/debounce.js';
+import debounce from '../helpers/Debounce.js';
 
 const invertedEdges = {
   top: 'bottom',
@@ -102,6 +111,11 @@ export default {
       default: undefined
     },
 
+    sheet: {
+      type: Boolean,
+      default: false
+    },
+
     disabled: {
       type: Boolean,
       required: false
@@ -112,8 +126,6 @@ export default {
     return {
       internalOpen: false,
       location: {
-        left: 0,
-        top: 0,
         '--max-height': undefined
       },
       arrow: {}
@@ -172,13 +184,29 @@ export default {
 
       requestAnimationFrame(() => {
         const element = document.elementFromPoint(e.clientX, e.clientY);
+        if (element.closest(this.$el.firstElementChild) !== null)
+          return;
         element?.dispatchEvent(e);
       });
     },
 
     async alignDropdown () {
+      if (
+        this.sheet &&
+        window.matchMedia('only screen and (max-width: 800px)').matches
+      ) {
+        this.location = {};
+        return;
+      }
+
       const button = this.$el.firstElementChild;
-      if (!(this.align.includes('end') || this.align.includes('start') || this.align.includes('middle')))
+      if (
+        !(
+          this.align.includes('end') ||
+          this.align.includes('start') ||
+          this.align.includes('middle')
+        )
+      )
         this.$refs.dropdown.style.setProperty(
           '--width',
           button.clientWidth + 'px'
@@ -212,12 +240,20 @@ export default {
 
       let width = 0;
 
-      if (!(this.align.includes('end') || this.align.includes('start') || this.align.includes('middle')))
+      if (
+        !(
+          this.align.includes('end') ||
+          this.align.includes('start') ||
+          this.align.includes('middle')
+        )
+      )
         width = button.clientWidth + 'px';
 
       this.location = {
         ...this.location,
-        transform: `translate(${position.x}px, ${position.y}px)`,
+        transform: `translate(${Math.round(position.x)}px, ${Math.round(
+          position.y
+        )}px)`,
         '--width': width
       };
 
@@ -228,7 +264,9 @@ export default {
         invertedEdges[position.placement.split('-')[0]]
       );
       this.arrow.display =
-        (arrowX !== undefined || arrowY !== undefined) && this.offset > 0 ? 'block' : 'none';
+        (arrowX !== undefined || arrowY !== undefined) && this.offset > 0
+          ? 'block'
+          : 'none';
       this.arrow.left = arrowX ? `${arrowX}px` : '';
       this.arrow.top = arrowY ? `${arrowY}px` : '';
       this.arrow.right = '';
@@ -255,6 +293,12 @@ export default {
   width: 100%;
   height: 100%;
   z-index: 4;
+
+  @include mobile {
+    &.sheet {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+  }
 }
 
 .dropdown-button {
@@ -310,14 +354,17 @@ export default {
 
   .dropdown {
     --dropdown-background: #{$background};
+    --container-padding: 1rem;
     position: fixed;
+    top: 0;
+    left: 0;
     display: block;
     background-color: var(--dropdown-background);
     border: 1px solid $shade-100;
     color: $text-color;
     min-width: var(--width, 300px);
     width: max-content;
-    --container-padding: 1rem;
+    max-width: calc(100vw - 1rem);
     min-height: 2.5rem;
     box-shadow: $shadow-small;
     border-radius: $border-radius;
@@ -337,6 +384,35 @@ export default {
       max-height: var(--max-height, unset);
     }
 
+    @include mobile {
+      &.sheet {
+        box-shadow: $shadow;
+        border: none !important;
+        transform: translateY(0);
+        max-height: 50vh;
+        max-width: 100vw;
+        overflow: auto;
+        bottom: var(--screen-padding-bottom, 0);
+        top: unset;
+        left: 0;
+        width: 100vw;
+        height: auto;
+        border-radius: 0;
+        border-top-left-radius: $border-radius;
+        border-top-right-radius: $border-radius;
+
+        &.v-enter-active,
+        &.v-leave-active {
+          transition: transform 250ms ease;
+          opacity: 1 !important;
+        }
+
+        &.v-enter,
+        &.v-leave-to {
+          transform: translateY(100%);
+        }
+      }
+    }
   }
 
   .arrow {

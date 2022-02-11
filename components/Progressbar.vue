@@ -55,6 +55,9 @@ export default {
       default: false
     },
 
+    /**
+     * @values colors
+     */
     color: {
       type: String,
       default: 'primary'
@@ -80,18 +83,18 @@ export default {
   &.indeterminate {
     @keyframes indeterminate {
       0% {
-        width: 25%;
-        margin-left: -25%;
+        width: 33%;
+        margin-left: -33%;
       }
 
       100% {
-        width: 25%;
-        margin-left: 125%;
+        width: 33%;
+        margin-left: 133%;
       }
     }
 
     .bar > .value {
-      animation: indeterminate 2.5s ease infinite forwards;
+      animation: indeterminate 2.5s ease-in-out infinite forwards;
     }
   }
 
@@ -101,6 +104,10 @@ export default {
     gap: 1rem;
 
     p {
+      margin-bottom: 0;
+    }
+
+    p>span:first-of-type {
       display: none;
     }
 
@@ -113,6 +120,7 @@ export default {
     @include flex(space-between);
     margin-bottom: 0.5rem;
     vertical-align: middle;
+    font-size: 0.8rem;
 
     .max {
       color: $shade-500;
@@ -120,9 +128,9 @@ export default {
   }
 
   .bar {
-    background-color: $shade-300;
+    background-color: $shade-100;
     height: 0.25rem;
-    border-radius: 1rem;
+    border-radius: $border-radius;
     overflow: hidden;
     box-sizing: border-box;
 
@@ -132,6 +140,7 @@ export default {
       background-color: var(--color);
       transition: width 500ms ease-out;
       height: 100%;
+      border-radius: $border-radius;
     }
   }
 }

@@ -13,14 +13,14 @@ export default {
 
 export const Dropdown = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
-  template: '<d-dropdown v-bind="$props"><d-container background="primary">Dropdown content</d-container></d-dropdown>'
+  template: '<d-dropdown v-bind="$props"><d-container>Dropdown content</d-container></d-dropdown>'
 });
 
 export const WithContent = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   template: `
       <d-dropdown v-bind="$props" v-on="$props">
-        <d-container background="primary">
+        <d-container background="warning">
           <p><strong>No users found.</strong></p>
           <d-button>Click here to refresh</d-button>
         </d-container>
@@ -49,7 +49,7 @@ export const autoSize = (_, { argTypes }) => ({
       </div>
       `
 });
-autoSize.args = { autoSize: true };
+autoSize.args = { autoSize: true, align: 'bottom-end' };
 
 export const closingWhenClickingButton = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
@@ -101,3 +101,22 @@ export const programaticOpen = (_, { argTypes }) => ({
       `
 });
 programaticOpen.parameters = { controls: { exclude: ['open'] } };
+
+export const Sheet = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  template: `
+  <d-dropdown v-bind="$props">
+    <d-container>
+      <h4>This content is presented in a sheet when the screen is a mobile screen.</h4>
+      <p>Try clicking outside</p>
+      <d-container />
+    </d-container>
+  </d-dropdown>`
+});
+Sheet.args = { sheet: true };
+Sheet.parameters = {
+  controls: { exclude: ['offset', 'autoSize', 'align'] },
+  viewport: {
+    defaultViewport: 'mobile2'
+  }
+};

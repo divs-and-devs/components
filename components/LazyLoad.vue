@@ -33,8 +33,8 @@
 </template>
 
 <script>
-import debounce from '../helpers/debounce.js';
-import scrollParent from '../helpers/scrollParent.js';
+import debounce from '../helpers/Debounce.js';
+import scrollParent from '../helpers/ScrollParent.js';
 
 export default {
   props: {

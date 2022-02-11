@@ -15,9 +15,13 @@
       class="dropdown"
       offset="0"
       :align="align"
+      sheet
       :class="[color, { keepSelected, selected: keys.includes(value) }]"
     >
       <ul role="listbox">
+        <li v-if="label || placeholder && $device.isMobile" class="label">
+          <strong>{{ label || placeholder }}</strong>
+        </li>
         <li
           v-for="option in keys"
           :key="option"
@@ -63,6 +67,9 @@ export default {
       default: undefined
     },
 
+    /**
+     * @values colors
+     */
     color: {
       type: String,
       default: 'primary'
@@ -206,12 +213,19 @@ export default {
     padding: 0;
 
     li {
-      color: $shade-500;
+      color: $shade-800;
       padding: 1rem 1.25rem;
       white-space: nowrap;
       user-select: none;
       cursor: pointer;
       transition: background-color 100ms ease;
+
+      &.label {
+        pointer-events: none;
+        padding: 1rem 1.25rem 0.5rem;
+        font-size: 0.8rem;
+        color: $shade-400;
+      }
 
       &:focus-visible,
       &:hover {

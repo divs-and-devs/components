@@ -66,7 +66,7 @@
 
 <script>
 import { get, set } from 'object-path';
-import debounce from '../helpers/debounce';
+import debounce from '../helpers/Debounce';
 
 export default {
   inheritAttrs: false,

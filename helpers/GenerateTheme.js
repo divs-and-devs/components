@@ -39,11 +39,11 @@ function generateColorset (color, dark) {
 
   return {
     base: hslToString(h, s, l),
-    fade: color?.fade ?? hslToString(h, s, l + 25),
-    shade: color?.shade ?? hslToString(h, s, l - 25),
+    fade: color?.fade ?? hslToString(h, s - 10, l + 33),
+    shade: color?.shade ?? hslToString(h, s - 10, l - 33),
     text: color?.text ?? determineTextColor(l),
-    fadetext: color?.fadeText ?? determineTextColor(l + 25),
-    shadetext: color?.shadeText ?? determineTextColor(l - 25)
+    fadetext: color?.fadeText ?? determineTextColor(l + 33),
+    shadetext: color?.shadeText ?? determineTextColor(l - 33)
   };
 }
 

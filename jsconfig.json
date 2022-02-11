@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
         "types": [
-            "./module.d.ts",
-            "@nuxtjs/axios"
+            "@nuxtjs/axios",
+            "@nuxtjs/device",
         ]
     }
 }

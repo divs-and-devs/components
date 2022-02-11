@@ -46,11 +46,12 @@ export default {
 
 <style lang="scss" scoped>
 .backdrop {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
   top: var(--navbar-height, 4.5rem);
-  bottom: 0;
-  left: 0;
+  bottom: var(--screen-padding-bottom, 0);
+  left: var(--screen-padding-left, 0);
+  right: var(--screen-padding-right, 0);
   width: 100%;
   z-index: 10;
   overscroll-behavior: contain;

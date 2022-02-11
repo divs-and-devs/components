@@ -2,15 +2,15 @@
   <div
     v-if="pageCount > 1"
     class="paginator"
-    :class="color"
+    :class="[color, type]"
     :style="{'--pages': maxWidth}"
     tabindex="0"
     @keydown.left.prevent="$emit('input', Math.max(0, value - 1))"
     @keydown.right.prevent="$emit('input', Math.min(pageAmount - 1, value + 1))"
   >
     <d-icon
-      name="chevron-left"
-      :color="value <= 0 ? 'shade-400' : 'shade-700'"
+      name="arrow-left"
+      :color="value <= 0 ? 'shade-400' : 'shade-600'"
       @click="$emit('input', Math.max(0, value - 1))"
     />
 
@@ -28,8 +28,8 @@
     </div>
 
     <d-icon
-      name="chevron-right"
-      :color="value >= pageAmount - 1 ? 'shade-400' : 'shade-700'"
+      name="arrow-right"
+      :color="value >= pageAmount - 1 ? 'shade-400' : 'shade-600'"
       @click="$emit('input', Math.min(pageAmount - 1, value + 1))"
     />
   </div>
@@ -53,9 +53,18 @@ export default {
       default: 3
     },
 
+    /**
+     * @values colors
+     */
     color: {
       type: String,
       default: 'primary'
+    },
+
+    type: {
+      type: String,
+      default: 'buttons',
+      validator: value => ['buttons', 'bar'].includes(value)
     }
   },
 
@@ -123,11 +132,37 @@ export default {
     grid-template-columns: 3rem auto 3rem;
     align-items: center;
     justify-items: center;
-    margin: 1rem auto;
-    border-radius: $border-radius;
 
     @include colors(--paginator-color);
     @include text-color(--paginator-text-color);
+
+    &.buttons {
+      display: inline-grid;
+      border-radius: $border-radius;
+      margin: 1rem auto;
+
+      button {
+        border-radius: $border-radius;
+      }
+
+      .selected {
+        color: var(--paginator-text-color);
+        background-color: var(--paginator-color);
+      }
+    }
+
+    &.bar {
+      display: grid;
+      justify-content: space-between;
+      border-top: 1px solid $shade-200;
+
+      .selected {
+        background: none;
+        border-top: 2px solid var(--paginator-color);
+        height: calc(2.5rem - 2px);
+        padding-bottom: 1px;
+      }
+    }
 
     &:focus-visible {
       outline: $primary 2px solid;
@@ -149,13 +184,8 @@ export default {
       cursor: pointer;
       user-select: none;
       font: inherit;
-      border-radius: $border-radius;
-      @include flex;
-    }
 
-    .selected {
-      color: var(--paginator-text-color);
-      background-color: var(--paginator-color);
+      @include flex;
     }
 
     .icon {

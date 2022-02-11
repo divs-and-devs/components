@@ -64,7 +64,8 @@ export const ItemSlot = (_, { argTypes }) => ({
   template: `
   <d-select v-bind="$props" v-on="$props" v-model="value">
     <template #item="{ option }">
-      <d-icon :name="option.icon" />  {{ option.label }}
+      <d-icon :name="option.icon" color="primary" /> <strong>{{ option.label }}</strong>
+      <p>{{ option.description }}</p>
     </template>
   </d-select>
   `,
@@ -76,20 +77,31 @@ export const ItemSlot = (_, { argTypes }) => ({
   }
 });
 ItemSlot.args = {
-  label: 'Change language',
+  label: 'View',
   field: 'label',
   options: {
-    dutch: {
-      label: 'Dutch language',
-      icon: 'dutch-flag'
+    sidebar: {
+      label: 'Sidebar',
+      description: 'Only show the sidebar.',
+      icon: 'sidebar'
     },
-    english: {
-      label: 'English language',
-      icon: 'English-flag'
+    columns: {
+      label: 'Columns',
+      description: 'Show data in columns.',
+      icon: 'columns'
     },
-    unknown: {
-      label: 'System language',
-      icon: 'help-circle'
+    layout: {
+      label: 'Layouts',
+      description: 'Show navigationbar and sidepanel.',
+      icon: 'layout'
     }
+  }
+};
+
+export const MobileStyle = Select.bind({});
+MobileStyle.args = { label: 'Select an option' };
+MobileStyle.parameters = {
+  viewport: {
+    defaultViewport: 'mobile2'
   }
 };

@@ -1,6 +1,7 @@
 <template>
   <transition name="fade-up" appear @leave="remove">
     <div v-if="internalShow" class="banner" :class="[color, type]">
+      <d-icon v-if="icon" :name="icon" size="1.2" />
       <d-button type="tertiary" icon="x" @click="close" />
       <div class="content">
         <slot />
@@ -14,13 +15,24 @@ export default {
   props: {
     type: {
       type: String,
-      validator: value => ['bar', 'fixed', 'inline'].includes(value),
+      validator: value => ['bar', 'fixed', 'inline', 'float'].includes(value),
       default: 'bar'
     },
 
+    /**
+     * @values colors
+     */
     color: {
       type: String,
       default: 'primary'
+    },
+
+    /**
+     * @values icons
+     */
+    icon: {
+      type: String,
+      default: undefined
     },
 
     show: {
@@ -62,14 +74,27 @@ export default {
   .banner {
     padding: 1rem;
 
-    @include colors();
+    @include flex(space-between);
+    @include colors;
     @include text-color;
 
     --height: -100%;
 
+    &.float,
     &.inline {
       text-align: left;
       border-radius: $border-radius;
+    }
+
+    &.float {
+      position: fixed;
+      box-shadow: $shadow;
+      bottom: calc(1rem + var(--screen-padding-bottom, 0px));
+      left: 1rem;
+      right: 1rem;
+    }
+
+    &.inline {
       margin-bottom: 2.5rem;
     }
 
@@ -85,6 +110,14 @@ export default {
       right: 0;
     }
 
+    > .content {
+      flex: 1;
+    }
+
+    > .icon {
+      margin-right: 1rem;
+    }
+
     ::v-deep a {
       margin-left: 1rem;
       text-decoration: underline;
@@ -94,9 +127,9 @@ export default {
 
     > button.tertiary {
       color: inherit;
-      float: right;
       margin: 0 !important;
       padding: 0 !important;
+      order: 99;
     }
   }
 </style>

@@ -65,6 +65,9 @@ export default {
       default: false
     },
 
+    /**
+     * @values icons
+     */
     icon: {
       type: String,
       required: false,

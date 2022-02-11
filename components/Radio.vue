@@ -51,6 +51,9 @@ export default {
       validator: value => ['inline', 'block'].includes(value)
     },
 
+    /**
+     * @values colors
+     */
     color: {
       type: String,
       default: 'primary'

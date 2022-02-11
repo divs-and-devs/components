@@ -123,6 +123,9 @@ export default {
       required: false
     },
 
+    /**
+     * @values icons
+     */
     icon: {
       type: String,
       default: undefined

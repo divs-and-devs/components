@@ -8,6 +8,10 @@ export default {
     color: {
       control: 'select',
       options: colors
+    },
+    type: {
+      control: 'radio',
+      options: ['buttons', 'bar']
     }
   },
 
@@ -17,7 +21,7 @@ export default {
   }
 };
 
-export const Default = (_, { argTypes }) => ({
+export const Paginator = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   data () {
     return {

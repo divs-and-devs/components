@@ -47,6 +47,9 @@ export default {
       required: true
     },
 
+    /**
+     * @values colors
+     */
     color: {
       type: String,
       default: 'primary'

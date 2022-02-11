@@ -22,6 +22,11 @@ export default {
   },
 
   methods: {
+    update (number, state) {
+      this.number = number;
+      this.state = state;
+    },
+
     clickHandler () {
       this.changeStep(this.number);
     }
@@ -58,6 +63,7 @@ export default {
         height: 2.5rem;
         color: $text-color;
         font-size: 1rem;
+        user-select: none;
         margin: 0 auto 1rem;
         transition: background 200ms ease-in 200ms, color 200ms ease-in 200ms;
 

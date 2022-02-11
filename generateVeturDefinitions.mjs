@@ -1,10 +1,16 @@
 import { writeFileSync } from 'fs';
 import { basename, resolve } from 'path';
+import { createRequire } from 'module';
 import glob from 'fast-glob';
 import { parse } from 'vue-docgen-api';
+import icons from './components/icons/icons.js';
+const require = createRequire(import.meta.url);
+
+const colors = require('./colors.json');
+const directives = require('./directives.json');
 
 const tags = {};
-const attributes = {};
+const attributes = directives;
 function convertToKebabCase (string) {
   return string.replace(/([a-z])([A-Z])/g, '$1-$2').replace(/\s+/g, '-').toLowerCase();
 }
@@ -43,6 +49,12 @@ async function parseComponent (path) {
       attributes[propertyPath].description = 'required ' + attributes[propertyPath].description;
 
     if (prop.values) {
+      if (prop.values.length === 1 && prop.values[0] === 'icons')
+        prop.values = icons;
+
+      if (prop.values.length === 1 && prop.values[0] === 'colors')
+        prop.values = colors;
+
       attributes[propertyPath].options = prop.values;
       attributes[propertyPath].enum = prop.values.map(x => ({ value: x, description: x }));
     }

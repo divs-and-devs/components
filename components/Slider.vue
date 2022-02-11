@@ -80,6 +80,9 @@ export default {
       default: ''
     },
 
+    /**
+     * @values colors
+     */
     color: {
       type: String,
       default: 'primary'
@@ -259,11 +262,16 @@ export default {
     width: 1rem;
     top: -0.75rem;
     left: min(max(0.01rem, calc(var(--left) - 0.5rem)), calc(100% - 1rem));
-    background-color: $shade-100;
+    background-color: $background;
     border: 1px solid $shade-300;
     box-shadow: $shadow-small;
     border-radius: math.div($border-radius, 2);
     cursor: grab;
+
+    body.dark & {
+      background-color: $shade-100;
+      border-color: $shade-300;
+    }
 
     &:focus {
       cursor: grabbing;

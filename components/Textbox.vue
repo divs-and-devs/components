@@ -53,6 +53,9 @@ export default {
       default: ''
     },
 
+    /**
+     * @values icons
+     */
     icon: {
       type: String,
       required: false,

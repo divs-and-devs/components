@@ -32,6 +32,9 @@ export default {
         ['primary', 'secondary', 'tertiary', 'danger', 'link'].includes(input)
     },
 
+    /**
+     * @values icons
+     */
     icon: {
       type: String,
       default: undefined
@@ -160,6 +163,10 @@ button {
   margin: 1rem 0.5rem;
   transition: background-color 100ms ease, color 100ms ease, border 100ms ease;
 
+  form > & {
+    margin-inline: 0;
+  }
+
   span {
     vertical-align: middle;
     text-align: center;
@@ -245,7 +252,7 @@ button {
 
     &:hover {
       background-color: $primary-shade;
-      color: $background;
+      color: $shade-100;
     }
 
     body.dark &:hover {
@@ -254,7 +261,7 @@ button {
 
     &:active {
       background-color: $text-color;
-      color: $background;
+      color: $primary-text;
     }
 
     body.dark &:active {
@@ -265,7 +272,7 @@ button {
     &:disabled,
     body.dark &:disabled {
       background-color: $shade-500;
-      color: $background;
+      color: $primary-text;
     }
   }
 

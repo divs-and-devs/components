@@ -13,6 +13,6 @@ export default {
 export const Spinner = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   template: `
-  <d-spinner v-bind="$props">
+  <d-spinner v-bind="$props" />
   `
 });

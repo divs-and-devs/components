@@ -13,18 +13,28 @@
 <script>
 export default {
   props: {
+
+    /**
+     * @values icons
+     */
     name: {
       type: String,
       default: 'help-circle'
     },
+
+    /**
+     * @values colors
+     */
     color: {
       type: String,
       default: undefined
     },
+
     filled: {
       type: Boolean,
       default: false
     },
+
     size: {
       type: [String, Number],
       default: 1

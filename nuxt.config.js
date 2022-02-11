@@ -37,6 +37,7 @@ export default {
   buildModules: [
     '~/module.js',
     '@nuxtjs/style-resources',
+    '@nuxtjs/device',
     'portal-vue/nuxt',
     '@nuxtjs/axios'
   ],
@@ -47,7 +48,6 @@ export default {
   ],
 
   componentLibrary: {
-    dimColorsInDarkMode: false,
     navbarheight: 0
   },
 
@@ -60,6 +60,7 @@ export default {
     stories: [
       '~/stories/Welcome.stories.mdx',
       '~/stories/design/colors.stories.mdx',
+      '~/stories/design/*.stories.mdx',
       '~/stories/**/*.stories.js'
     ],
 

@@ -33,6 +33,9 @@ export default {
     };
   },
   props: {
+    /**
+     * @values icons
+     */
     icon: {
       type: String,
       default: 'more-horizontal'

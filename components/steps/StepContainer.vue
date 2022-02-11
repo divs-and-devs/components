@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import Vue from 'vue';
 export default {
   provide () {
     return {
@@ -19,6 +18,9 @@ export default {
       default: 0
     },
 
+    /**
+     * @values colors
+     */
     color: {
       type: String,
       default: 'primary'
@@ -50,13 +52,12 @@ export default {
     updateSteps () {
       for (let i = 0; i < this.steps.length; i++) {
         let state = 'none';
-        Vue.set(this.steps[i], 'number', i);
 
         if (i < this.step) state = 'done';
         if (i === this.step)
           state = 'current';
 
-        Vue.set(this.steps[i], 'state', state);
+        this.steps[i].update(i, state);
       }
     }
   }

@@ -5,6 +5,9 @@
 <script>
 export default {
   props: {
+    /**
+     * @values colors
+     */
     color: {
       type: String,
       default: 'primary'

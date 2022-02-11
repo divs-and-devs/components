@@ -214,8 +214,8 @@ export default {
 
     .count {
       display: inline-block;
-      background-color: $shade-300;
-      color: $text-color;
+      background-color: $primary-fade;
+      color: $primary-fade-text;
       border-radius: 100px;
       min-width: 1.5rem;
       text-align: center;

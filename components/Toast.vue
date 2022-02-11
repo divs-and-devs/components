@@ -40,22 +40,30 @@ export default {
       type: Boolean,
       default: true
     },
+
     error: {
       type: Boolean,
       default: false
     },
+
+    /**
+     * @values icons
+     */
     icon: {
       type: String,
       default: ''
     },
+
     title: {
       type: String,
       default: ''
     },
+
     subtitle: {
       type: String,
       default: ''
     },
+
     action: {
       type: String,
       default: ''

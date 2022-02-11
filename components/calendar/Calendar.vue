@@ -1,34 +1,29 @@
 <template>
-  <div class="calendar">
-    <d-textbox
-      type="text"
-      :value="htmlDate"
-      :placeholder="today"
-      :label="label"
-      :required="required"
-      :disabled="disabled"
-      @invalid="$emit('invalid')"
-      @change="parseHTMLDate"
-    >
-      <d-button
-        tabindex="-1"
-        type="secondary"
-        icon="calendar"
+  <d-dropdown class="calendar" align="bottom-middle">
+    <template #button="{toggle}">
+      <d-textbox
+        type="text"
+        :value="htmlDate"
+        :placeholder="today"
+        :label="label"
+        :required="required"
         :disabled="disabled"
-        icon-size="1.25"
-        @click.stop="toggle"
-      />
-    </d-textbox>
-
-    <transition name="fade">
-      <div
-        v-if="show"
-        ref="calendar"
-        class="calendar-popout"
-        :style="position"
-        @click.stop
+        @invalid="$emit('invalid')"
+        @change="parseHTMLDate"
       >
-        <button v-keybind.esc hidden @click="show = false" />
+        <d-button
+          tabindex="-1"
+          type="secondary"
+          icon="calendar"
+          :disabled="disabled"
+          icon-size="1.25"
+          @click.stop="toggle"
+        />
+      </d-textbox>
+    </template>
+
+    <template #default>
+      <d-container>
         <header>
           <h4
             :key="viewDate.toFormat('MMM yyyy')"
@@ -37,7 +32,6 @@
             {{ viewDate.toFormat("MMM yyyy") }}
             <d-icon :name="view == 'years' ? 'chevron-up' : 'chevron-down'" />
           </h4>
-
           <d-button icon="chevron-left" type="link" @click="previous" />
           <d-button icon="chevron-right" type="link" @click="next" />
         </header>
@@ -107,13 +101,12 @@
             </transition>
           </main>
         </transition>
-      </div>
-    </transition>
-  </div>
+      </d-container>
+    </template>
+  </d-dropdown>
 </template>
 
 <script>
-import { computePosition, flip, shift, offset } from '@floating-ui/dom';
 import { DateTime } from 'luxon';
 export default {
   props: {
@@ -152,8 +145,7 @@ export default {
       viewDate,
       transition: 'right',
       show: false,
-      view: 'month',
-      position: undefined
+      view: 'month'
     };
   },
 
@@ -189,34 +181,7 @@ export default {
     }
   },
 
-  mounted () {
-    if (!process.browser) return;
-
-    window.addEventListener('click', (e) => {
-      if (e.target.closest('.calendar-input') !== this.$el) this.show = false;
-    });
-  },
-
   methods: {
-    async toggle () {
-      this.show = !this.show;
-
-      await new Promise(resolve => setTimeout(resolve, 25));
-
-      if (!this.show) return;
-
-      const position = await computePosition(this.$el, this.$refs.calendar, {
-        placement: 'bottom',
-        strategy: 'absolute',
-        middleware: [flip({ padding: 8 }), shift({ padding: 8 }), offset(8)]
-      });
-
-      this.position = {
-        left: position.x + 'px',
-        top: position.y + 'px'
-      };
-    },
-
     parseHTMLDate (value) {
       const date = DateTime.fromFormat(value.target.value, 'dd-M-yyyy');
 
@@ -355,9 +320,6 @@ main {
   padding-top: 1.5rem;
   height: inherit;
   width: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
   transition: transform 500ms ease-in-out;
 
   > span {
@@ -434,6 +396,7 @@ main {
       position: absolute;
       content: attr(data-date);
       background-color: $primary;
+      color: $primary-text;
       border-radius: 50%;
       transform: scale(1);
 
@@ -452,6 +415,10 @@ main {
 
     &.range {
       background-color: $primary-fade;
+
+      .dark & {
+        background-color: $primary-shade;
+      }
 
       &.start {
         border-top-left-radius: 50%;

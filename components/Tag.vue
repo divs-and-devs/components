@@ -22,12 +22,19 @@ export default {
       type: Boolean,
       required: false
     },
+
+    /**
+     * @values icons
+     */
     icon: {
       type: String,
       default: '',
       required: false
     },
 
+    /**
+     * @values colors
+     */
     color: {
       type: String,
       default: 'primary',
@@ -107,8 +114,12 @@ export default {
     font-size: 1.25rem;
   }
 
-  @include text-color;
-  @include colors();
-  @include fade-colors(--hover);
+  @include shade-colors(color);
+  @include fade-colors(background-color);
+
+  body.dark & {
+    @include fade-colors(color);
+    @include shade-colors(background-color);
+  }
 }
 </style>
