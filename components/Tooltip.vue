@@ -176,7 +176,7 @@ export default {
         else if (this.anchor.$el && this.anchor.$el instanceof Element)
           return this.anchor.$el;
 
-      return this.$parent?.$el ?? this.$el?.parentElement ?? this.$el;
+      return this.$el?.parentElement ?? this.$parent?.$el ?? this.$el;
     },
 
     async alignBubble (x, y) {
