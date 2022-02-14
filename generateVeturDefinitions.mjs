@@ -3,7 +3,7 @@ import { basename, resolve } from 'path';
 import { createRequire } from 'module';
 import glob from 'fast-glob';
 import { parse } from 'vue-docgen-api';
-import icons from './components/icons/icons.js';
+import icons from './components/helpers/Icons.js';
 const require = createRequire(import.meta.url);
 
 const colors = require('./colors.json');

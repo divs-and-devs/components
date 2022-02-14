@@ -1,15 +1,19 @@
 <template>
-  <div class="bar-graph" :class="[{'has-name': name}, orientation]">
+  <div class="bar-graph" :class="[{'has-name': name, small}, orientation]">
     <div v-for="(row, i) in data" :key="i" class="data-row">
       <p v-if="name">
-        {{ get(row, name) }}
+        <slot name="label" :row="row" :label="get(row, name)" :index="i">
+          {{ get(row, name) }}
+        </slot>
       </p>
       <div
         class="bar"
         :class="getColor(i)"
-        :style="{ '--width': get(row, value) * scaleFactor * 100 + '%' }"
+        :style="{ '--width': get(row, value) * scaleFactor * 100 + '%', '--color': getColor(i) }"
       >
-        {{ get(row, value) }} {{ unit }}
+        <slot name="value" :row="row" :value="get(row, value)" :index="i" :unit="unit">
+          {{ get(row, value) }} {{ unit }}
+        </slot>
       </div>
     </div>
   </div>
@@ -33,7 +37,7 @@ export default {
 
     unit: {
       type: String,
-      default: '%'
+      default: ''
     },
 
     name: {
@@ -44,6 +48,11 @@ export default {
     value: {
       type: String,
       default: 'value'
+    },
+
+    small: {
+      type: Boolean,
+      default: false
     },
 
     scale: {
@@ -82,9 +91,19 @@ export default {
     display: grid;
     gap: 1rem;
 
+    --bar-height: 3rem;
+
+    &.small {
+      --bar-height: 1rem;
+      --indent: 6ch;
+
+      gap: 0.25rem 1rem;
+    }
+
     &.horizontal {
       align-items: center;
       grid-template-columns: 1fr;
+
       &.has-name {
         grid-template-columns: auto 1fr;
       }
@@ -92,7 +111,7 @@ export default {
 
     &.vertical {
       grid-template-rows: 1fr;
-      grid-template-columns: repeat(auto-fit, 3rem);
+      grid-template-columns: repeat(auto-fit, var(--bar-height));
       height: 100%;
       min-height: 300px;
       align-items: flex-start;
@@ -114,21 +133,28 @@ export default {
   .data-row {
     display: contents;
 
-    p {
+    > p {
       color: $shade-500;
     }
 
     .bar {
       box-sizing: border-box;
-      padding: 0.5rem;
-      line-height: 2rem;
-      border-radius: $border-radius / 2;
+      padding: 0.5rem 0;
+      line-height: calc(var(--bar-height) - var(--indent) - 1rem);
+      border-radius: 4px;
       user-select: none;
       white-space: nowrap;
       transition: background-color 250ms ease-in-out, width 100ms ease, height 100ms ease;
+      background-color: var(--color);
+      text-indent: 1rem;
+
+      .small & {
+        text-indent: calc(100% + 1ch);
+      }
 
       .bar-graph.vertical & {
-        height: var(--width);
+        height: calc(var(--width) - var(--indent));
+        min-height: 0.25rem;
         writing-mode: vertical-rl;
         text-orientation: mixed;
         animation: appear-vertical 500ms ease-out forwards;
@@ -141,7 +167,9 @@ export default {
       }
 
       .bar-graph.horizontal & {
-        width: var(--width);
+        width: calc(var(--width) - var(--indent));
+        min-width: 0.25rem;
+        min-height: calc(var(--bar-height) - var(--indent));
         animation: appear-horizontal 500ms ease-out forwards;
 
         @keyframes appear-horizontal {
@@ -152,12 +180,10 @@ export default {
       }
 
       @include colors;
-      @include text-color;
 
       &:hover {
         @include fade-colors;
       }
-
     }
   }
 </style>
