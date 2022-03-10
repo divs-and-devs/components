@@ -38,5 +38,5 @@ WithInvalidUserProfileIcon.args = {
 
 export const WithName = ProfilePicture.bind({});
 WithName.args = {
-  fullName: 'Roy Ermers'
+  fullName: 'John Doe'
 };

@@ -80,12 +80,19 @@ export default {
 
 <style lang="scss" scoped>
 .accordion-item {
+  border-top: 1px solid $shade-200;
+
+  &:last-of-type {
+    border-bottom: 1px solid $shade-200;
+  }
+
   .icon {
     transition: transform 200ms ease;
   }
 
   header {
     @include flex;
+
     gap: 1rem;
     padding: 1rem 0;
     cursor: pointer;
@@ -99,15 +106,13 @@ export default {
 
   .content {
     overflow: hidden;
-    border-color: $shade-300;
     --container-padding: 1rem;
 
     max-height: 0;
-    transition: max-height 200ms ease, padding 200ms ease, border 200ms ease;
+    transition: max-height 200ms ease, padding 200ms ease;
   }
 
   &.open {
-
     header {
       color: $primary;
     }
@@ -120,7 +125,6 @@ export default {
       padding: var(--padding, 0.5rem) 0;
       max-height: var(--max-height);
       animation: 200ms content-overflow step-end forwards;
-      border-block: 1px solid $shade-300;
 
       @keyframes content-overflow {
         to {

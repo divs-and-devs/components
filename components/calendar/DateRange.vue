@@ -158,11 +158,13 @@ export default {
       gap: 1rem;
     }
 
-    span {
-      // grid-row: -1 / 1;
+    @include mobile {
+      .calendar ~ .calendar {
+        margin-block-start: 0.5rem;
+      }
 
-      @include mobile {
-        display: none;
+      span {
+          display: none;
       }
     }
   }

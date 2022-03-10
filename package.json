@@ -29,7 +29,10 @@
     "nuxt": "^2.15.7",
     "object-path": "^0.11.8",
     "portal-vue": "^2.1.7",
-    "uuid": "^3.4.0"
+    "swipe": "^1.7.7",
+    "uuid": "^3.4.0",
+    "vue-awesome-swiper": "^4.1.1",
+    "vue2-touch-events": "^3.2.2"
   },
   "vetur": {
     "tags": "tags.json",
@@ -37,12 +40,12 @@
     "globalAttributes": "directives.json"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^8.0.0",
-    "@nuxtjs/svg": "^0.3.0",
     "@nuxtjs/device": "^2.1.0",
+    "@nuxtjs/eslint-config": "^8.0.0",
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/storybook": "^4.2.0",
     "@nuxtjs/style-resources": "^1.2.0",
+    "@nuxtjs/svg": "^0.3.0",
     "@storybook/theming": "^6.4.9",
     "core-js": "^3.20.2",
     "eslint": "^8.6.0",

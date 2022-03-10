@@ -20,6 +20,11 @@ export default {
       options: ['left', 'right']
     },
 
+    size: {
+      control: 'radio',
+      options: ['inline', 'block']
+    },
+
     iconSize: {
       control: {
         type: 'range',

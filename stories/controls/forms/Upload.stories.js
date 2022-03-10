@@ -1,7 +1,16 @@
 import UploadComponent from '@/components/Upload.vue';
 export default {
   title: 'Controls/Forms/Upload',
-  component: UploadComponent
+  component: UploadComponent,
+  argTypes: {
+    size: {
+      control: 'radio',
+      options: ['small', 'medium', 'large']
+    }
+  },
+  args: {
+    size: 'large'
+  }
 };
 
 export const Upload = (_, { argTypes }) => ({

@@ -225,6 +225,10 @@ export default {
         padding: 1rem 1.25rem 0.5rem;
         font-size: 0.8rem;
         color: $shade-400;
+
+        @include desktop {
+          display: none;
+        }
       }
 
       &:focus-visible,

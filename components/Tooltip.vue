@@ -272,10 +272,11 @@ export default {
   transition-duration: 100ms;
   background-color: $shade-100;
   --tooltip-background: #{$shade-100};
+  --background: #{$shade-100};
   color: $text-color;
 
   body.dark & {
-    --tooltip-background: #{$shade-200};
+    --background: #{$shade-200};
     background-color: $shade-200;
   }
 
@@ -299,19 +300,19 @@ export default {
     }
 
     &.top {
-      border-bottom: 1em solid var(--tooltip-background);
+      border-bottom: 1em solid var(--background);
     }
 
     &.bottom {
-      border-top: 1em solid var(--tooltip-background);
+      border-top: 1em solid var(--background);
     }
 
     &.right {
-      border-left: 1em solid var(--tooltip-background);
+      border-left: 1em solid var(--background);
     }
 
     &.left {
-      border-right: 1em solid var(--tooltip-background);
+      border-right: 1em solid var(--background);
     }
   }
 }

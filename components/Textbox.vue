@@ -41,6 +41,9 @@
 export default {
   inheritAttrs: false,
   props: {
+    /**
+     * @values email, password, search, tel, text, url
+     */
     type: {
       default: 'text',
       type: String,
@@ -84,14 +87,21 @@ export default {
       required: false
     },
 
+    /**
+     * Displays an error message beneath the textbox.
+     */
     errorMessage: {
       default: '',
       type: String,
       required: false
     },
 
+    /**
+     * Disables text editing.
+     */
     disabled: {
-      type: Boolean
+      type: Boolean,
+      default: false
     }
   },
 

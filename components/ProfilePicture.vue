@@ -1,5 +1,5 @@
 <template>
-  <object :data="url" type="image/png" :title="fullName" :style="{fontSize: size + 'rem'}">
+  <object v-if="url" :data="url" type="image/png" :title="fullName" :style="{fontSize: size + 'rem'}">
     <svg
       v-if="fullName"
       viewBox="0 0 32 32"
@@ -14,6 +14,27 @@
 
     <d-icon v-else-if="icon" :name="icon" />
   </object>
+  <div v-else class="object" :title="fullName" :style="{fontSize: size + 'rem'}">
+    <svg
+      v-if="fullName"
+      viewBox="0 0 32 32"
+      :fill="color"
+      :title="fullName"
+    >
+      <circle cx="16" cy="16" r="16" />
+      <text
+        text-anchor="middle"
+        x="16"
+        y="22"
+        font-size="0.9rem"
+        fill="white"
+        font-style="normal"
+      >
+        {{ letters }}
+      </text>
+    </svg>
+    <d-icon v-else-if="icon" :name="icon" />
+  </div>
 </template>
 
 <script>
@@ -65,6 +86,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.object,
 object {
   box-sizing: border-box;
   display: inline-block;

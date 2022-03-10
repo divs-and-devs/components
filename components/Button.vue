@@ -25,11 +25,24 @@
 <script>
 export default {
   props: {
+
+    /**
+     * @values primary, secondary, tertiary, danger, link
+     */
     type: {
       type: String,
       default: 'primary',
       validator: input =>
         ['primary', 'secondary', 'tertiary', 'danger', 'link'].includes(input)
+    },
+
+    /**
+     * @values inline, block
+     */
+    size: {
+      type: String,
+      default: 'inline',
+      validator: value => ['inline', 'block'].includes(value)
     },
 
     /**
@@ -79,6 +92,7 @@ export default {
       default: false
     }
   },
+
   computed: {
     classes () {
       return [
@@ -87,7 +101,8 @@ export default {
         {
           'icon-only': this.iconOnly,
           'has-icon': this.icon,
-          loading: this.loading
+          loading: this.loading,
+          block: this.size === 'block'
         }
       ];
     },
@@ -96,6 +111,7 @@ export default {
       return !this.$slots.default;
     }
   },
+
   methods: {
     openNewTab (event) {
       if ((this.disabled || !this.to) && !event) {
@@ -163,6 +179,17 @@ button {
   margin: 1rem 0.5rem;
   transition: background-color 100ms ease, color 100ms ease, border 100ms ease;
 
+  &.block:not(.icon-only) {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    margin-inline: 0;
+
+    span {
+      flex: 1;
+    }
+  }
+
   form > & {
     margin-inline: 0;
   }
@@ -196,13 +223,17 @@ button {
 
   &.loading {
     cursor: progress;
+    position: relative;
 
     span:first-of-type {
       opacity: 0;
     }
 
     span.loading {
-      margin-left: -100%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
 
     .spinner {

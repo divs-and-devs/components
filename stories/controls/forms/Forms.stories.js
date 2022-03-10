@@ -1,5 +1,10 @@
 export default {
   title: 'Controls/Forms',
+
+  parameters: {
+    layout: 'fullscreen'
+  },
+
   args: {
     disabled: false,
     required: false

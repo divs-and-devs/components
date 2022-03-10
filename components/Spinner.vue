@@ -1,10 +1,21 @@
 <template>
-  <div class="spinner" :class="color" />
+  <div :class="size">
+    <div class="spinner" :class="color" />
+  </div>
 </template>
 
 <script>
 export default {
   props: {
+    /**
+     * @values inline, block
+     */
+    size: {
+      type: String,
+      default: 'inline',
+      validator: value => ['inline', 'block'].includes(value)
+    },
+
     /**
      * @values colors
      */
@@ -17,6 +28,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.block {
+  @include flex;
+}
+
+.inline {
+  display: inline-block;
+}
+
 .spinner {
   display: inline-block;
   border-radius: 50%;

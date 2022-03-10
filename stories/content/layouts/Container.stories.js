@@ -4,9 +4,11 @@ import ContainerComponent from '@/components/Container.vue';
 export default {
   title: 'Content/Layouts/Container',
   component: ContainerComponent,
+
   parameters: {
     layout: 'fullscreen'
   },
+
   argTypes: {
     background: {
       control: 'select',

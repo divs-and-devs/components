@@ -5,6 +5,12 @@ export default {
   component: PanelLayoutComponent,
   parameters: {
     layout: 'fullscreen'
+  },
+  argTypes: {
+    align: {
+      control: 'radio',
+      options: ['left', 'right']
+    }
   }
 };
 

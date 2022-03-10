@@ -1,7 +1,7 @@
 <template>
   <div class="upload" :class="{ invalid: error || isInvalid }">
     <label v-if="label" :for="id">{{ label }}</label>
-    <label :for="id" class="box" :class="{ hovering }">
+    <label :for="id" class="box" :class="[size, { hovering }]">
       <input
         :id="id"
         ref="input"
@@ -32,8 +32,8 @@
         </p>
         <p v-else key="success-state" class="hint">
           <slot v-if="file" name="success" :filename="file.name">
-            <d-icon name="check" /> File
-            <strong>{{ file.name }}</strong> selected.
+            <d-icon name="check" />
+            <span>File <strong>{{ file.name }}</strong> selected.</span>
           </slot>
         </p>
       </transition>
@@ -84,6 +84,12 @@ export default {
     required: {
       type: Boolean,
       default: false
+    },
+
+    size: {
+      type: String,
+      default: 'large',
+      validator: value => ['small', 'medium', 'large'].includes(value)
     }
   },
 
@@ -197,7 +203,7 @@ export default {
 
     font-size: 1rem;
     text-align: center;
-    background-color: $shade-100;
+    background-color: $background;
     border: 1px solid $shade-300;
     border-radius: $border-radius;
     padding: 3rem 1rem;
@@ -207,6 +213,32 @@ export default {
     cursor: pointer;
     transition: border-color 250ms ease, background-color 250ms ease,
       color 250ms ease;
+
+    &.small,
+    &.medium {
+      padding: 1rem;
+      display: block;
+      text-align: left;
+
+      .hint {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+
+        svg {
+          margin: 0;
+        }
+      }
+    }
+
+    &.small {
+      padding: 0.5rem 1rem;
+      display: inline-block;
+
+      .hint > .icon {
+        font-size: 1.5rem;
+      }
+    }
 
     input {
       position: absolute;

@@ -63,9 +63,17 @@ export default {
     vertical-align: middle;
     transition: fill 200ms ease, stroke 200ms ease;
 
+    &::v-deep .fill-only {
+      opacity: 0;
+    }
+
     &.filled {
       fill: currentColor;
       stroke: $background;
+
+      &::v-deep .fill-only {
+        opacity: 1;
+      }
     }
 
     @include colors(color);

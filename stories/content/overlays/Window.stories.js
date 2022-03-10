@@ -39,3 +39,23 @@ export const WithContent = (_, { argTypes }) => ({
     `
 });
 WithContent.args = { title: 'A beautiful title' };
+
+export const Compact = (_, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  template: `
+    <div>
+        <d-window v-bind="$props" v-on="$props">
+            <template #default>
+                <h1>Are you sure?</h1>
+                <p>This action is irreversable, please enter <strong>@divs-and-devs/components</strong> to delete your code.</p>
+
+                <d-textbox placeholder="@divs-and-devs/components" />
+            </template>
+            <template #footer>
+                <d-button type="danger">Delete</d-button>
+            </template>
+        </atura-window>
+    </template>
+    `
+});
+Compact.args = { title: 'A beautiful title', compact: true };

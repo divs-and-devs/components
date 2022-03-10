@@ -1,5 +1,5 @@
 <template>
-  <d-dropdown class="calendar" align="bottom-middle">
+  <d-dropdown class="calendar" align="bottom-middle" sheet>
     <template #button="{toggle}">
       <d-textbox
         type="text"
@@ -47,7 +47,7 @@
           </section>
         </transition>
         <transition name="fade" mode="out-in">
-          <main v-if="view == 'month'" key="months" class="months">
+          <main v-if="view == 'month'" key="months" v-touch:swipe.right="previous" v-touch:swipe.left="next" class="months">
             <transition :name="transition">
               <div :key="startOfMonth.toSeconds()" class="month">
                 <template v-for="i in 42">
@@ -77,7 +77,7 @@
               </div>
             </transition>
           </main>
-          <main v-else-if="view == 'years'" key="years" class="years">
+          <main v-else-if="view == 'years'" key="years" v-touch:swipe.right="previous" v-touch:swipe.left="next" class="years">
             <transition :name="transition">
               <div :key="viewDate.year">
                 <span
@@ -273,6 +273,8 @@ header {
 
   position: relative;
   overflow: hidden;
+  max-width: 14rem;
+  margin: 0 auto;
   z-index: 1;
 
   h4 {
@@ -287,13 +289,13 @@ header {
     z-index: 1;
     padding: 0.25rem;
     margin: 0;
-    stroke-width: 2;
   }
 }
 
 .days {
   display: grid;
   grid-template-columns: repeat(7, 2rem);
+  justify-content: center;
 
   span {
     text-align: center;
@@ -309,6 +311,7 @@ header {
 main {
   position: relative;
   height: 13.5rem;
+  box-sizing: border-box;
   overflow: hidden;
 }
 
@@ -320,6 +323,9 @@ main {
   padding-top: 1.5rem;
   height: inherit;
   width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
   transition: transform 500ms ease-in-out;
 
   > span {
@@ -338,11 +344,13 @@ main {
 
 .month {
   display: grid;
+  place-content: center;
   grid-template-columns: repeat(7, 2rem);
   row-gap: 4px;
   position: absolute;
   left: 0;
   top: 0;
+  right: 0;
   transition: transform 500ms ease-in-out;
 
   > span {

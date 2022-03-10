@@ -27,7 +27,8 @@ export default {
   plugins: [
     '@/plugins/Tooltip.client.js',
     '@/plugins/Keybind.js',
-    '@/plugins/Toast.js'
+    '@/plugins/Toast.js',
+    '@/plugins/Touch.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

@@ -1,6 +1,6 @@
 <template>
-  <div class="panel-layout" :class="{ open, overlay, container }">
-    <main>
+  <div class="panel-layout" :class="[{ open, overlay, container }, align]">
+    <main @click="$emit('update:open', false)">
       <slot />
     </main>
     <div key="panel" class="panel">
@@ -25,6 +25,15 @@ export default {
     container: {
       type: Boolean,
       default: false
+    },
+
+    /**
+     * @values right, left
+     */
+    align: {
+      type: String,
+      default: 'right',
+      validator: value => ['right', 'left'].includes(value)
     }
   }
 };
@@ -32,26 +41,58 @@ export default {
 
 <style lang="scss" scoped>
   .panel-layout {
+    --panel-width: 0;
+
     display: grid;
     height: 100%;
-    grid-template-columns: 1fr 0;
-    gap: 5vw;
     overflow-x: hidden;
-    transition: grid-template-columns 250ms ease;
+    transition: grid-template-columns 250ms ease, gap 250ms ease;
+
+    &.left {
+      grid-template-columns: var(--panel-width) 1fr;
+
+      .panel {
+        border-right: 1px solid $shade-300;
+        order: -1;
+      }
+
+      &.container > main {
+        padding: 1.5rem var(--container-padding);
+        padding-left: 2.5rem;
+      }
+    }
+
+    &.right {
+      grid-template-columns: 1fr var(--panel-width);
+
+      .panel {
+        border-left: 1px solid $shade-300;
+      }
+
+      &.container > main {
+        padding: 1.5rem var(--container-padding);
+        padding-right: 2.5rem;
+      }
+    }
 
     &.open {
-      grid-template-columns: 1fr 35vw;
+      gap: 5vw;
+      --panel-width: 30vw;
+
+      .panel {
+        padding: 2rem;
+      }
     }
 
     @include tablet {
       &.open {
-        grid-template-columns: 1fr 50vw;
+        --panel-width: 50vw;
       }
     }
 
     @include mobile {
       &.open {
-        grid-template-columns: 0 1fr;
+        --panel-width: 1fr;
       }
     }
 
@@ -59,21 +100,32 @@ export default {
       grid-template-columns: 1fr;
       position: relative;
       contain: strict;
+      transform: translateZ(0);
 
       &.open > main {
         background: $background;
         filter: brightness(75%);
-        pointer-events: none;
+        user-select: none;
+      }
+
+      &.right .panel {
+        right: 0;
+        transform: translateX(100%);
+        transition: transform 250ms ease-out;
+      }
+
+      &.left .panel {
+        left: 0;
+        transform: translateX(-100%);
+        transition: transform 250ms ease-out;
       }
 
       .panel {
         position: absolute;
-        right: -100%;
         top: 0;
         bottom: 0;
         width: 35vw;
         box-shadow: $shadow;
-        transition: right 250ms ease-out;
 
         @include mobile {
           width: 100vw;
@@ -81,14 +133,9 @@ export default {
       }
 
       &.open > .panel {
-        right: 0;
-        transition: right 250ms ease-in;
+        transform: translateX(0);
+        transition: transform 250ms ease-in;
       }
-    }
-
-    &.container > main {
-      padding: 1.5rem var(--container-padding);
-      padding-right: 2.5rem;
     }
 
     main {
@@ -99,14 +146,13 @@ export default {
 
     .panel {
       background-color: $background;
-      border-left: 1px solid $shade-300;
-      padding: 2rem;
+      padding: 2rem 0;
       box-sizing: border-box;
-      width: 30vw;
       overflow-y: auto;
       overflow-x: clip;
       position: relative;
       scrollbar-gutter: stable;
+      transition: padding 250ms ease;
 
       ::v-deep hr {
         margin: 1.5rem -2rem;

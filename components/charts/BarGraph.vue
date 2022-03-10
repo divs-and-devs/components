@@ -62,7 +62,7 @@ export default {
 
     colors: {
       type: Array,
-      default: () => ['primary']
+      default: () => ['primary-fade']
     }
   },
 
@@ -92,12 +92,18 @@ export default {
     gap: 1rem;
 
     --bar-height: 3rem;
+    --indent: 0ch;
 
     &.small {
       --bar-height: 1rem;
       --indent: 6ch;
 
       gap: 0.25rem 1rem;
+
+      .bar {
+        line-height: 1rem;
+        color: $text-color;
+      }
     }
 
     &.horizontal {
@@ -121,6 +127,7 @@ export default {
 
         p {
           transform: rotate(45deg);
+          text-align: center;
         }
 
         .bar {
@@ -139,21 +146,20 @@ export default {
 
     .bar {
       box-sizing: border-box;
-      padding: 0.5rem 0;
-      line-height: calc(var(--bar-height) - var(--indent) - 1rem);
+      line-height: calc(var(--bar-height) - var(--indent, 0));
       border-radius: 4px;
       user-select: none;
       white-space: nowrap;
       transition: background-color 250ms ease-in-out, width 100ms ease, height 100ms ease;
       background-color: var(--color);
-      text-indent: 1rem;
+      text-indent: 0.5rem;
 
       .small & {
         text-indent: calc(100% + 1ch);
       }
 
       .bar-graph.vertical & {
-        height: calc(var(--width) - var(--indent));
+        height: calc(var(--width) - var(--indent, 0));
         min-height: 0.25rem;
         writing-mode: vertical-rl;
         text-orientation: mixed;
@@ -167,9 +173,9 @@ export default {
       }
 
       .bar-graph.horizontal & {
-        width: calc(var(--width) - var(--indent));
+        width: calc(var(--width) - var(--indent,0));
         min-width: 0.25rem;
-        min-height: calc(var(--bar-height) - var(--indent));
+        min-height: calc(var(--bar-height) - var(--indent,0));
         animation: appear-horizontal 500ms ease-out forwards;
 
         @keyframes appear-horizontal {
@@ -180,6 +186,12 @@ export default {
       }
 
       @include colors;
+      @include text-color;
+      @include colors(border-color);
+
+      @media print {
+        border: 1px solid var(--color);
+      }
 
       &:hover {
         @include fade-colors;

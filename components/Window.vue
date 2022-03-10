@@ -2,7 +2,7 @@
   <div class="backdrop" @mousedown.self="$emit('close')">
     <div
       class="window"
-      :class="{ header: !!$slots.header || title }"
+      :class="{ header: !!$slots.header || title, compact }"
       role="window"
       :aria-label="title"
     >
@@ -33,6 +33,11 @@ export default {
     title: {
       type: String,
       default: undefined
+    },
+
+    compact: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -67,10 +72,28 @@ export default {
     flex-direction: column;
     border-radius: $border-radius;
 
-    @include mobile {
-      width: 100vw;
-      height: 100%;
-      border-radius: 0;
+    &.compact {
+      width: min(500px, 100vw);
+      height: auto;
+      min-height: 200px;
+
+      header,
+      footer {
+        padding: 0 1rem;
+      }
+
+      header {
+        text-align: left;
+        padding: 0.5rem 1rem;
+      }
+    }
+
+    &:not(.compact) {
+      @include mobile {
+        width: 100vw;
+        height: 100%;
+        border-radius: 0;
+      }
     }
 
     &.header > header {
@@ -108,13 +131,16 @@ export default {
 
     > footer {
       padding: 0 2rem;
-      height: 4.5rem;
       border-top: 1px solid $shade-200;
 
       @include flex(space-between);
 
-      p {
-        margin-right: 1rem;
+      :last-child {
+        margin-left: auto;
+      }
+
+      button {
+        margin-block: 0.5rem;
       }
     }
   }

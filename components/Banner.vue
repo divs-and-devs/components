@@ -1,10 +1,13 @@
 <template>
-  <transition name="fade-up" appear @leave="remove">
+  <transition :name="type=='inline' ? 'fade' : 'fade-up'" appear @leave="remove">
     <div v-if="internalShow" class="banner" :class="[color, type]">
       <d-icon v-if="icon" :name="icon" size="1.2" />
       <d-button type="tertiary" icon="x" @click="close" />
       <div class="content">
         <slot />
+      </div>
+      <div v-if="!!$slots.actions" class="actions">
+        <slot name="actions" />
       </div>
     </div>
   </transition>
@@ -95,7 +98,7 @@ export default {
     }
 
     &.inline {
-      margin-bottom: 2.5rem;
+      margin-block: 1.5rem;
     }
 
     &.bar {
@@ -112,6 +115,10 @@ export default {
 
     > .content {
       flex: 1;
+    }
+
+    > .actions {
+      padding: 0 1rem;
     }
 
     > .icon {
