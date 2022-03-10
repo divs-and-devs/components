@@ -27,7 +27,13 @@
       </div>
     </div>
     <slot />
-    <div v-if="!noContent" class="content" :class="[background, { screen }]">
+    <div
+      v-if="!noContent"
+      v-touch:swipe.left="()=>select(selectedIndex + 1)"
+      v-touch:swipe.right="()=>select(selectedIndex - 1)"
+      class="content"
+      :class="[background, { screen }]"
+    >
       <transition :name="internalTransition" mode="out-in">
         <portal-target
           :key="selectedIndex"
@@ -41,6 +47,8 @@
 </template>
 
 <script>
+import { nanoid } from 'nanoid';
+
 export default {
   name: 'TabContainer',
 
@@ -87,9 +95,9 @@ export default {
 
   data () {
     return {
-      selectedIndex: 0,
-      internalTransition: this.transition,
-      uniqueID: encodeURIComponent(Math.random()).substring(2),
+      selectedIndex: -1,
+      internalTransiton: this.transition,
+      uniqueID: nanoid(),
       tabs: []
     };
   },
@@ -108,6 +116,11 @@ export default {
     this.$watch('$children', () => this.updateTabs());
     this.updateTabs();
     this.updateHidden(this.selectedIndex, this.tabs[0].hidden);
+
+    if (!this.selected)
+      this.select(this.tabs.findIndex(x => !x.hidden));
+    else
+      this.select(this.tabs.findIndex(x => x.name === this.selected) ?? this.tabs.findIndex(x => !x.hidden));
   },
 
   methods: {
@@ -118,11 +131,25 @@ export default {
 
     updateTabs () {
       this.tabs = this.$children.filter(x => x.$vnode.tag.toLowerCase().includes('tab'));
+
+      this.select(this.selectedIndex);
     },
 
     select (id) {
+      if (this.selectedIndex === id)
+        return;
+
+      if (id < 0)
+        id = 0;
+
+      if (id > this.tabs.length - 1)
+        id = this.tabs.length - 1;
+
       if (this.transition === 'slide-horizontal' || this.transition === 'slide-horizontal-reverse')
-        this.internalTransition = (this.selectedIndex - id < 0) ? 'slide-horizontal-reverse' : 'slide-horizontal';
+        if (this.selectedIndex === -1)
+          this.internalTransition = 'fade';
+        else
+          this.internalTransition = (this.selectedIndex - id < 0) ? 'slide-horizontal-reverse' : 'slide-horizontal';
 
       this.selectedIndex = id;
 
@@ -162,10 +189,6 @@ export default {
 
   &.no-content {
     margin-bottom: 0;
-  }
-
-  &::-webkit-scrollbar {
-    background: $background;
   }
 
   &.is-container {
@@ -214,14 +237,18 @@ export default {
 
     .count {
       display: inline-block;
-      background-color: $primary-fade;
-      color: $primary-fade-text;
-      border-radius: 100px;
+      background-color: $shade-200;
+      color: $text-color;
+      border-radius: $border-radius * 100;
       min-width: 1.5rem;
       text-align: center;
       vertical-align: middle;
       padding: 0.25rem;
       line-height: 1rem;
+
+      .dark & {
+        background: $shade-300;
+      }
     }
   }
 }

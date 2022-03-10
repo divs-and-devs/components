@@ -47,7 +47,7 @@ function createTheme (colors, nuxt) {
   const theme = generateTheme(colors);
 
   const templateSource = readFileSync(resolve(__dirname, 'templates/variables.css')).toString();
-  const source = template(templateSource, {})(theme);
+  const source = template(templateSource, {})({ ...theme, bodyfont: colors.bodyFont, headerfont: colors.headerFont ?? colors.bodyFont });
   const path = resolve(nuxt.options.rootDir, 'node_modules', '.cache', 'theme.css');
 
   mkdirSync(resolve(nuxt.options.rootDir, 'node_modules', '.cache'), { recursive: true });

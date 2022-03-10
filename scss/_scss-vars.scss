@@ -1,5 +1,5 @@
-$body-font: var(--body-font);
-$header-font: var(--header-font);
+$body-font: var(--body-font, sans-serif);
+$header-font: var(--header-font, sans-serif);
 
 $primary: var(--primary);
 $primary-text: var(--primary-text);

@@ -284,12 +284,13 @@ export default {
     width: 100%;
     display: flex;
     border: 1px solid $shade-300;
-    background: $shade-100;
+    background: $background;
     border-radius: $border-radius;
     overflow: clip;
     transition: border-color 250ms ease;
 
     &:focus-within,
+    &:hover,
     &.is-dragging {
       border-color: $primary;
       background-color: $background;

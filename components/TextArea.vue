@@ -109,7 +109,7 @@ export default {
     padding: 0.75rem 1rem;
     resize: none;
     outline: none;
-    background-color: $shade-100;
+    background-color: $background;
     color: $text-color;
     border: 1px solid $shade-300;
     transition: background-color 250ms ease, box-shadow 250ms ease,

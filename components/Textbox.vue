@@ -210,7 +210,7 @@ export default {
   }
 
   > .input {
-    --input-background: #{$shade-100};
+    --input-background: #{$background};
     --input-border: #{$shade-300};
     --input-color: #{$text-color};
     background-color: var(--input-background);

@@ -90,10 +90,11 @@ export default {
     border-bottom-right-radius: 0.5rem;
   }
 
-  &::v-deep .tooltip {
+  .submenu {
     padding: 0;
     pointer-events: all;
     overflow: clip;
+    background: $background;
   }
 }
 </style>

@@ -31,3 +31,8 @@ export const PanelLayout = (_, { argTypes }) => ({
     </template>
   </d-panel-layout>`
 });
+
+export const Overlay = PanelLayout.bind({});
+Overlay.args = {
+  overlay: true
+};

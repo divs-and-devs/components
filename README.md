@@ -20,6 +20,8 @@ componentLibrary: {
   dimColorsInDarkMode?: boolean;
   navbarHeight?: number;
   borderRadius: string;
+  headerFont?: string,
+  bodyFont?: string,
   primary?: string | {
     base: string,
     fade?: string,

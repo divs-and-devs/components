@@ -27,8 +27,8 @@ export const Accordion = (_, { argTypes }) => ({
       <d-accordion-item name="Item 3" vertical-padding="0">
         <d-container background="error" center screen>
           <d-icon name="alert-circle" size="4" color="error-shade" />
-          <h3>I tried to warn you.</h3>
-          <p>But you didn't listen.</p>
+          <h3>Damn, you did it anyway.</h3>
+          <p>Well, hello. 👋.</p>
         </d-container>
       </d-accordion-item>
     </d-accordion>

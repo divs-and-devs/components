@@ -15,7 +15,6 @@ export default {
   li {
     &.block {
       height: 1px;
-      width: 100%;
       background-color: $shade-300;
       margin: 0.5rem 1rem;
     }

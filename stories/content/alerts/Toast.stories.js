@@ -99,14 +99,14 @@ export const ErrorState = (_, { argTypes }) => ({
   methods: {
     async toast () {
       if (await this.$toast({
-        title: 'Something went terribly wrong!',
+        title: '🚨Something went terribly wrong!🚨',
         subtitle: 'Only use this state when something went so wrong that the application becomes unusable.',
         delay: 0,
         icon: 'alert-circle',
         action: 'reload page',
         error: true
       }))
-        location.reload();
+        this.$toast('Nah ah, no reloading on this page.');
     }
   },
   template: `
@@ -115,7 +115,7 @@ export const ErrorState = (_, { argTypes }) => ({
       <pre>
       <code class="block">
         this.result = await this.$toast({
-          title: 'Something went terribly wrong!',
+          title: '🚨Something went terribly wrong!🚨',
           subtitle: 'Only use this state when something went so wrong that the application becomes unusable.',
           delay: 0,
           icon: 'alert-circle',

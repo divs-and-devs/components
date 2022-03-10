@@ -90,6 +90,8 @@ body.light {
   --background: var(--light);
   --text-color: var(--dark);
   --navbar-height: <%=navbarheight%>;
+  --body-font: "<%=bodyfont %>";
+  --header-font: "<%=headerfont %>";
 
   color: var(--text-color);
   background-color: var(--background);

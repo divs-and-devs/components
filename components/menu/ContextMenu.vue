@@ -6,7 +6,6 @@
     :show="show"
     @mousedown.stop
   >
-    <!-- @mouseleave.self="show = false" -->
     <ul class="items">
       <slot />
     </ul>
@@ -71,11 +70,18 @@ export default {
   padding: 0;
   pointer-events: all;
   overflow: clip;
+  box-shadow: $shadow-small;
+  --background: #{$light};
+
+  .dark & {
+    --background: #{$dark};
+  }
 
   ::v-deep .tooltip {
     padding: 0;
     pointer-events: all;
     overflow: clip;
+    box-shadow: $shadow-small;
   }
 }
 </style>

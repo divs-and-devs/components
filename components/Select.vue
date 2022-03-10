@@ -198,12 +198,10 @@ export default {
     }
 
     > button {
-      background-color: $shade-100;
       color: var(--color);
 
-      &:hover {
+      &:not(:disabled):hover {
         border-color: $primary;
-        background-color: $background;
       }
     }
   }

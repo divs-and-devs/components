@@ -37,8 +37,8 @@ export default {
 <style lang="scss" scoped>
   $gradient: linear-gradient(
     270deg,
-    $shade-300 0%,
-    $shade-300 50%,
+    $shade-200 0%,
+    $shade-200 50%,
     var(--step-background-color) 50%,
     var(--step-background-color) 100%
   );
@@ -58,7 +58,7 @@ export default {
 
       &.number {
         border-radius: 100%;
-        background: $shade-300;
+        background: $shade-200;
         width: 2.5rem;
         height: 2.5rem;
         color: $text-color;

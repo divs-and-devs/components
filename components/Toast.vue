@@ -163,7 +163,6 @@ export default {
   gap: 1rem;
   padding: 1rem;
   border-radius: $border-radius;
-  border: 1px solid $shade-800;
   background-color: $shade-600;
   color: $light;
   animation: appear 1s ease-out;

@@ -53,6 +53,8 @@
 </template>
 
 <script>
+import { nanoid } from 'nanoid';
+
 export default {
   props: {
     value: {
@@ -96,12 +98,7 @@ export default {
   data () {
     return {
       hovering: false,
-      id: Math.random()
-        .toString()
-        .substring(2)
-        .split('')
-        .map(x => String.fromCharCode(65 + Number(x)))
-        .join(''),
+      id: nanoid(6),
       file: this.value,
       error: '',
       isInvalid: false,

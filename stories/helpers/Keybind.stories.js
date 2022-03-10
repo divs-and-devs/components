@@ -10,9 +10,9 @@ export const Keybind = (_, { argTypes }) => ({
     <d-container>
       <p>This is a vue directive that helps to focus elements based on a keybind.</p>
       <p>For example</p>
-      <code>
+      <code class="block">
       <pre>
-      &lt;d-textbox v-keybind.ctrl.slash placeholder="Press ctrl+/" /&gt;
+      &lt;d-textbox v-keybind.ctrl.space placeholder="Press ctrl+space" /&gt;
       </pre>
       </code>
       <p>Try it out, press <kbd>ctrl</kbd> + <kbd>space</kbd>!</p>
@@ -24,7 +24,7 @@ export const HelpShortcut = (_, { argTypes }) => ({
   props: Object.keys(argTypes),
   template: `
     <d-container>
-      <p>There is a helper shortcut, <kbd>F1</kbd>, press this to see an overlay of all available keys.</p>
+      <p>There is a helper shortcut, <kbd>Ctrl</kbd> + <kbd>/</kbd>, press this to see an overlay of all available keys.</p>
       <d-button v-keybind.space>space</d-button>
       <d-button v-keybind.backspace>backspace</d-button>
       <d-button v-keybind.left>left arrow</d-button>
