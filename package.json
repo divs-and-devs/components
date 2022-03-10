@@ -1,6 +1,6 @@
 {
   "name": "@divs-and-devs/components",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "module.js",
   "types": "module.d.ts",
   "description": "Component library",
