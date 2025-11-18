@@ -72,7 +72,7 @@ buildModules: [
 
 ## Storybook
 
-This module uses storybook, a component documentation format. Run it using `npm run storybook`. Or use the latest live version [here](https://components.divsanddevs.nl).
+This module uses storybook, a component documentation format. Run it using `npm run storybook`. Or use the latest live version [here](https://divs-and-devs.github.io/components/).
 
 ## Development
 
